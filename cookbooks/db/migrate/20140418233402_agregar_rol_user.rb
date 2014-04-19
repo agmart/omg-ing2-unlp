@@ -1,5 +1,5 @@
 class AgregarRolUser < ActiveRecord::Migration
   def change
-    add_column :users, :es_admin, :boolean, :default => false
+    add_column :users, :es_admin, :boolean
   end
 end

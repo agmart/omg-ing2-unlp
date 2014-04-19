@@ -14,11 +14,14 @@ Cookbooks::Application.routes.draw do
 
   resources :tags
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
   root 'books#index'
+
+  # Cuando alguien haga un get a estas páginas, va al controlador
+  # de las páginas "genéricas" y muestra las vistas que corresponden
+  # a esas acciones (por defecto las que tienen el mismo nombre)
+  get 'acerca_de' => 'pages#acerca_de'
+  get 'contacto' => 'pages#contacto'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
