@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2014-04-18
+  estado: MyString
+
+two:
+  fecha: 2014-04-18
+  estado: MyString

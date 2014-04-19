@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  isbn: MyString
+  titulo: MyString
+  paginas: 1
+  precio: 9.99
+  fecha_publicacion: 2014-04-18
+
+two:
+  isbn: MyString
+  titulo: MyString
+  paginas: 1
+  precio: 9.99
+  fecha_publicacion: 2014-04-18

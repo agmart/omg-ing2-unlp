@@ -1,0 +1,44 @@
+<h1>Catálogo de libros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ISBN</th>
+      <th>Título</th>
+      <th>Páginas</th>
+      <th>Precio</th>
+      <th>Fecha publicación</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.isbn %></td>
+        <td><%= book.titulo %></td>
+        <td><%= book.paginas %></td>
+        <td><%= book.precio %></td>
+        <td><%= book.fecha_publicacion %></td>
+        <td><%= link_to 'Mostrar', book %></td>
+        <!--
+          Si hay un admin logueado, puede editar/borrar el libro.
+          Es decir, se muestra el botón. Luego, por las dudas, también se
+          restringe en el controlador.
+        -->
+        <% if current_user.es_admin? %>
+          <td><%= link_to 'Editar', edit_book_path(book) %></td>
+          <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<!-- Si hay un admin logueado, puede agregar un libro -->
+<% if current_user.es_admin? %>
+  <%= link_to 'Nuevo libro', new_book_path %>
+<% end %>
