@@ -22,6 +22,7 @@ Cookbooks::Application.routes.draw do
   # a esas acciones (por defecto las que tienen el mismo nombre)
   get 'acerca_de' => 'pages#acerca_de'
   get 'contacto' => 'pages#contacto'
+  get 'administracion' => 'pages#administracion'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

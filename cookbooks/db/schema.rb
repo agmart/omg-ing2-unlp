@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140419045010) do
     t.string   "isbn"
     t.string   "titulo"
     t.integer  "paginas"
-    t.decimal  "precio",           precision: 10, scale: 0
-    t.integer  "aÃ±o_publicacion"
+    t.decimal  "precio",          precision: 10, scale: 0
+    t.integer  "ano_publicacion"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"

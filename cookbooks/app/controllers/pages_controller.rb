@@ -4,4 +4,7 @@ class PagesController < ApplicationController
 
   def contacto
   end
+
+  def administracion
+  end
 end

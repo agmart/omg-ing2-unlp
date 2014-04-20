@@ -7,7 +7,8 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   # Validaciones
-  validates :author, presence: true
+  # se va hasta que este hecho el alta de author
+  #validates :author, presence: true
 
   def index
   end

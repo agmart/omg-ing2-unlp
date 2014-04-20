@@ -12,24 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :isbn %><br>
+    <%= f.label :isbn %>
     <%= f.text_field :isbn %>
   </div>
+<!--  <div class="field">
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  -->
   <div class="field">
-    <%= f.label :titulo %><br>
+    <%= f.label :titulo %>
     <%= f.text_field :titulo %>
   </div>
   <div class="field">
-    <%= f.label :paginas %><br>
+    <%= f.label :paginas %>
     <%= f.number_field :paginas %>
   </div>
   <div class="field">
-    <%= f.label :precio %><br>
+    <%= f.label :precio %>
     <%= f.text_field :precio %>
   </div>
   <div class="field">
-    <%= f.label :año_publicacion %><br>
-    <%= f.number_field :año_publicacion %>
+    <%= f.label "Año de publicación" %>
+    <%= f.number_field :ano_publicacion %>
   </div>
   <div class="actions">
     <%= f.submit %>

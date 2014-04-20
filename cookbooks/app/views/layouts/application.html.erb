@@ -14,24 +14,24 @@
   <body>
     <p class="navbar-text pull-right">
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
+      Identificado como: <strong><%= current_user.email %></strong>.
       <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-      <% if current_user.es_admin? %>
-        <%= link_to "Administracion" %>
-      <% end %>
+      <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
+      <%= link_to 'Carro de compras', cart_path(current_user)%>
+
+      <%# if current_user.es_admin? %>
+        |
+        <%= link_to "Administracion", administracion_path %>
+      <%# end %>
     <% else %>
       <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
       <%= link_to "Identificarse", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
 
     <div class="row">
-      <div class="large-12 large-centered columns">
-        <ul class="button-group even-4 radius">
+      <div class="large-6 large-centered columns">
+        <ul class="button-group even-3 radius">
           <%= link_to 'Catálogo de libros', books_path, class: "small button" %>
-          <% if current_user %>
-            <%= link_to 'Carro de compras', cart_path(current_user), class: "small button" %>
-          <% end %>
           <%= link_to 'Contacto', contacto_path, class: "small button" %>
           <%= link_to 'Acerca de nosotros', acerca_de_path, class: "small button" %>
         </ul>
