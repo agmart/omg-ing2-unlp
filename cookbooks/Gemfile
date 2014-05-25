@@ -35,6 +35,7 @@ end
 gem 'cancan'
 gem 'devise'
 gem 'foundation-rails'
+gem 'quiet_assets', :group => :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -1,9 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+</div>
 
-<p>
+<div class="row">
+  <p>
   <strong>Nombre:</strong>
   <%= @author.nombre %>
-</p>
+  </p>
+</div>
 
-<%= link_to 'Edit', edit_author_path(@author) %> |
-<%= link_to 'Back', authors_path %>
+<div class="row">
+  <div class="large-6 column">
+  <%= link_to 'Editar', edit_author_path(@author), class: 'button small' %> 
+  <%= link_to 'Volver al listado', authors_path, class: 'button small' %>
+  </div>
+</div>

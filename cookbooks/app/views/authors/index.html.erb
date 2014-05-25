@@ -1,27 +1,34 @@
-<h1>Listing authors</h1>
+<div class="row">
+  <h1>Listado de autores</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @authors.each do |author| %>
+<div class="row">
+  <% if @authors.any? %>
+    <table>
+    <thead>
       <tr>
-        <td><%= author.nombre %></td>
-        <td><%= link_to 'Show', author %></td>
-        <td><%= link_to 'Edit', edit_author_path(author) %></td>
-        <td><%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th>Detalles</th>
+        <%# if_admin %>
+        <th>Editar</th>
+        <th>Borrar</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @authors.each do |author| %>
+        <tr>
+        <td><%= author.nombre %></td>
+        <td><%= link_to 'Mostrar', author %></td>
+        <td><%= link_to 'Editar', edit_author_path(author) %></td>
+        <td><%= link_to 'Borrar', author, method: :delete, data: { confirm: '¿Seguro que querés borrarlo?' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+    </table>
+  <% end %>
+  <br>
 
-<%= link_to 'New Author', new_author_path %>
+  <%= link_to 'Nuevo autor', new_author_path, class: 'small button' %>
+  <%= link_to 'Administración', administracion_path, class: 'small button' %> 
+</div>
