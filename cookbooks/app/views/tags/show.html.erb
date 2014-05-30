@@ -1,9 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-6 small-centered columns">
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @tag.nombre %>
-</p>
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+    <p>
+    <strong>Nombre:</strong>
+    <%= @tag.nombre %>
+    </p>
+
+    <%= link_to 'Edit', edit_tag_path(@tag) %> |
+    <%= link_to 'Back', tags_path %>
+  </div>
+</div>

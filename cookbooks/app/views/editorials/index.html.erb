@@ -1,27 +1,32 @@
-<h1>Listing editorials</h1>
+<div class="row">
+  <div class="small-9 small-centered columns">
+    <h1>Listing editorials</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @editorials.each do |editorial| %>
-      <tr>
+      <tbody>
+      <% @editorials.each do |editorial| %>
+        <tr>
         <td><%= editorial.nombre %></td>
         <td><%= link_to 'Show', editorial %></td>
         <td><%= link_to 'Edit', edit_editorial_path(editorial) %></td>
         <td><%= link_to 'Destroy', editorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
 
-<br>
+    <br>
 
-<%= link_to 'New Editorial', new_editorial_path %>
+    <%= link_to 'New Editorial', new_editorial_path %>
+    <%= link_to 'Volver', administracion_path %>
+  </div>
+</div>

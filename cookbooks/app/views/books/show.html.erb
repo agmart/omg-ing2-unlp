@@ -1,29 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-9 small-centered columns">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Isbn:</strong>
-  <%= @book.isbn %>
-</p>
+    <p>
+    <strong>Isbn:</strong>
+    <%= @book.isbn %>
+    </p>
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @book.titulo %>
-</p>
+    <p>
+    <strong>Titulo:</strong>
+    <%= @book.titulo %>
+    </p>
 
-<p>
-  <strong>Paginas:</strong>
-  <%= @book.paginas %>
-</p>
+    <p>
+    <strong>Paginas:</strong>
+    <%= @book.paginas %>
+    </p>
 
-<p>
-  <strong>Precio:</strong>
-  <%= @book.precio %>
-</p>
+    <p>
+    <strong>Precio:</strong>
+    <%= @book.precio %>
+    </p>
 
-<p>
-  <strong>Fecha publicacion:</strong>
-  <%= @book.ano_publicacion %>
-</p>
+    <p>
+    <strong>Fecha publicacion:</strong>
+    <%= @book.ano_publicacion %>
+    </p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+    <%= link_to 'Edit', edit_book_path(@book) %> |
+    <%= link_to 'Back', books_path %>
+  </div>
+</div>
