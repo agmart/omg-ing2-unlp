@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140419045010) do
+ActiveRecord::Schema.define(version: 20140605210214) do
 
   create_table "authors", force: true do |t|
     t.string   "nombre"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140419045010) do
     t.datetime "updated_at"
     t.integer  "author_id"
     t.integer  "editorial_id"
+    t.string   "descripcion"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree

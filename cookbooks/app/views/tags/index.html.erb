@@ -1,6 +1,6 @@
 <div class="row">
   <div class="small-9 small-centered columns">
-    <h1>Listando categorias</h1>
+    <h1>Listado de categorias</h1>
 
     <table>
       <thead>
@@ -16,9 +16,9 @@
       <% @tags.each do |tag| %>
         <tr>
         <td><%= tag.nombre %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', tag %></td>
+        <td><%= link_to 'Editar', edit_tag_path(tag) %></td>
+        <td><%= link_to 'Borrar', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
       </tbody>
@@ -26,7 +26,7 @@
 
     <br>
 
-    <%= link_to 'Nueva categoría', new_tag_path %>
-    <%= link_to 'Volver', administracion_path %>
+    <%= link_to 'Nueva categoría', new_tag_path, class: 'small button' %>
+    <%= link_to 'Volver', administracion_path, class: 'small button' %>
   </div>
 </div>

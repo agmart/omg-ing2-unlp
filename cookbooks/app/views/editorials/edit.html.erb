@@ -1,6 +1,11 @@
-<h1>Editing editorial</h1>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <h1>Modificando editorial</h1>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Show', @editorial %> |
-<%= link_to 'Back', editorials_path %>
+
+    <%= link_to 'Mostrar editorial', @editorial, class: 'button small' %>
+    <%= link_to 'Volver al listado', editorials_path, class: 'button small' %>
+  </div>
+</div>

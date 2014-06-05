@@ -15,10 +15,10 @@
     <%= f.label :isbn %>
     <%= f.text_field :isbn %>
   </div>
-<!--  <div class="field">
+  <!--<div class="field">
     <%= f.label :author %>
     <%= f.text_field :author %>
-  -->
+  </div>-->
   <div class="field">
     <%= f.label :titulo %>
     <%= f.text_field :titulo %>
@@ -34,6 +34,10 @@
   <div class="field">
     <%= f.label "Año de publicación" %>
     <%= f.number_field :ano_publicacion %>
+  </div>
+  <div class="field">
+    <%= f.label "Descripción del libro" %>
+    <%= f.text_area :descripcion %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,14 +1,22 @@
 <div class="row">
   <div class="small-6 small-centered columns">
-
+    <p> Detalles del tag </p>
     <p id="notice"><%= notice %></p>
 
-    <p>
-    <strong>Nombre:</strong>
-    <%= @tag.nombre %>
-    </p>
+    <div class="row">
+      <p>
+      <strong>Nombre:</strong>
+      <%= @tag.nombre %>
+      </p>
+    </div>
 
-    <%= link_to 'Edit', edit_tag_path(@tag) %> |
-    <%= link_to 'Back', tags_path %>
+    <div class="row">
+      <div class="large-6 column">
+        <%= link_to 'Editar', edit_tag_path(@tag), class: 'button small' %>
+      </div>
+      <div class="large-6 column">
+        <%= link_to 'Volver al listado', tags_path, class: 'button small' %>
+      </div>
+    </div>
   </div>
 </div>

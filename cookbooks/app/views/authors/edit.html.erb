@@ -1,9 +1,11 @@
 <div class="row">
-  <h1>Modificando autor</h1>
+  <div class="small-6 small-centered columns">
+    <h1>Modificando autor</h1>
+
+    <%= render 'form' %>
+
+
+    <%= link_to 'Mostrar autor', @author, class: 'button small' %>
+    <%= link_to 'Volver al listado', authors_path, class: 'button small' %>
+  </div>
 </div>
-
-<%= render 'form' %>
-
-
-<%= link_to 'Mostrar autor', @author, class: 'button small' %> 
-<%= link_to 'Volver al listado', authors_path, class: 'button small' %>

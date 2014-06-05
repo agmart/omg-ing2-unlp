@@ -11,11 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
+  <div class="row">
+    <div class="large-12 column">
+      <div class="field">
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre %>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <div class="row">
+    <div class="large-4 column">
+      <div class="actions">
+        <%= f.submit 'Guardar', class: 'button small alert' %>
+      </div>
+    </div>
 <% end %>

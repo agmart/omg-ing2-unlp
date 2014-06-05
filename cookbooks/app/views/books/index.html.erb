@@ -3,18 +3,27 @@
       <h1>Listado de libros</h1>
   </div>
 </div>
+<% if flash[:alert] || flash[:error] %>
+  <div class="row">
+   <div class="alert-box alert small-4 small-centered columns" data-alert>
+     <%= flash[:alert] || flash[:error] || @error %>
+     <a href="#" class="close">&times;</a>
+   </div>
+  </div>
+ <% end %>
 <div class="row">
   <table>
   <thead>
     <tr>
       <th>ISBN</th>
+      <th>Autor</th>
       <th>Título</th>
       <th>Páginas</th>
-      <th>Precio</th>
       <th>Fecha publicación</th>
-      <th>Mostrar</th>
+      <th>Precio</th>
+      <!--<th>Mostrar</th>
       <th>Editar</th>
-      <th>Borrar</th>
+      <th>Borrar</th>-->
     </tr>
   </thead>
 
@@ -22,23 +31,23 @@
     <% @books.each do |book| %>
       <tr>
         <td><%= book.isbn %></td>
+        <td><%= book.author.nombre %></td>
         <td><%= book.titulo %></td>
         <td><%= book.paginas %></td>
-        <td><%= book.precio %></td>
         <td><%= book.ano_publicacion %></td>
-        <td><%= link_to 'Ver', book %></td>
-        <!--
+        <td>$<%= book.precio %></td>
+        <!--<td><%= link_to 'Ver', book %></td>
+
           Si hay un admin logueado, puede editar/borrar el libro.
           Es decir, se muestra el botón. Luego, por las dudas, también se
           restringe en el controlador.
-        -->
-        <%# if current_user && current_user.es_admin? %>
+        <%#  current_user.es_admin? %>
         <td><%= link_to 'Editar', edit_book_path(book) %></td>
         <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
         <%# end %>
           </ul>
         </div>
-        </td>
+        </td>-->
       </tr>
     <% end %>
   </tbody>
@@ -48,7 +57,7 @@
 <div class="row">
 <!-- Si hay un admin logueado, puede agregar un libro -->
 <%# if current_user %>
-  <%= link_to 'Nuevo libro', new_book_path, class: "button tiny radius success" %>
+  <%#= link_to 'Nuevo libro', new_book_path, class: "button tiny radius success" %>
 <%# end %>
 </div>
 

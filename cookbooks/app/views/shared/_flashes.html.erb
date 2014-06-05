@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="large-12 columns">
+     <% if flash[:notice] %>
+       <div class="alert-box success" data-alert>
+         <%= flash[:notice] || @notice %>
+         <a href="#" class="close">&times;</a>
+       </div>
+     <% end %>
+     <% if flash[:info] %>
+       <div class="alert-box" data-alert>
+         <%= flash[:info] || @info %>
+        <a href="#" class="close">&times;</a>
+       </div>
+     <% end %>
+    <% if flash[:alert] || flash[:error] %>
+       <div class="alert-box alert" data-alert>
+         <%= flash[:alert] || flash[:error] || @error %>
+         <a href="#" class="close">&times;</a>
+       </div>
+     <% end %>
+
+   </div>
+</div>

@@ -1,6 +1,7 @@
 class EditorialsController < ApplicationController
   before_action :set_editorial, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :check_is_admin
 
 
   # GET /editorials
@@ -72,5 +73,12 @@ class EditorialsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def editorial_params
       params.require(:editorial).permit(:nombre)
+    end
+
+    def check_is_admin
+      if !current_user.es_admin
+        flash[:error] = 'No tenés permisos'
+        redirect_to root_path
+      end
     end
 end

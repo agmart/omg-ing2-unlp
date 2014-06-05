@@ -1,9 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+</div>
 
-<p>
+<div class="row">
+  <p>
   <strong>Nombre:</strong>
   <%= @editorial.nombre %>
-</p>
+  </p>
+</div>
 
-<%= link_to 'Edit', edit_editorial_path(@editorial) %> |
-<%= link_to 'Back', editorials_path %>
+<div class="row">
+  <div class="large-6 column">
+  <%= link_to 'Editar', edit_editorial_path(@editorial), class: 'button small' %>
+  <%= link_to 'Volver al listado', editorials_path , class: 'button small' %>
+  </div>
+</div>
