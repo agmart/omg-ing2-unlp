@@ -1,17 +1,23 @@
 <div class="row">
-  <p id="notice"><%= notice %></p>
-</div>
+  <div class="small-6 small-centered columns">
+    <h1> Detalles del autor </h1>
+    <p id="notice"><%= notice %></p>
 
-<div class="row">
-  <p>
-  <strong>Nombre:</strong>
-  <%= @author.nombre %>
-  </p>
-</div>
+    <div class="row">
+      <p>
+      <strong>Nombre:</strong>
+      <%= @author.nombre %>
+      </p>
+    </div>
 
-<div class="row">
-  <div class="large-6 column">
-  <%= link_to 'Editar', edit_author_path(@author), class: 'button small' %> 
-  <%= link_to 'Volver al listado', authors_path, class: 'button small' %>
+    <div class="row">
+      <div class="large-6 column">
+        <%= link_to 'Editar', edit_author_path(@author), class: 'button small' %>
+      </div>
+      <div class="large-6 column">
+        <%= link_to 'Volver al listado', authors_path, class: 'button small' %>
+      </div>
+    </div>
   </div>
 </div>
+

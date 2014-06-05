@@ -1,7 +1,9 @@
 <div class="row">
-<h1>Nuevo autor</h1>
+  <div class="small-6 small-centered columns">
+  <h1>Nuevo autor</h1>
+
+  <%= render 'form' %>
+
+  <%= link_to 'Volver al listado', authors_path, class: 'small button' %>
+  </div>
 </div>
-<%= render 'form' %>
-
-<%= link_to 'Volver al listado', authors_path, class: 'small button' %>
-

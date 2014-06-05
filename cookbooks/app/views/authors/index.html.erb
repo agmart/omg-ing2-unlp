@@ -1,8 +1,10 @@
 <div class="row">
+  <div class="small-6 small-centered columns">
   <h1>Listado de autores</h1>
+  </div>
 </div>
-
 <div class="row">
+  <div class="small-6 small-centered columns">
   <%# if @authors.any? %>
     <table>
     <thead>
@@ -31,4 +33,5 @@
 
   <%= link_to 'Nuevo autor', new_author_path, class: 'small button' %>
   <%= link_to 'Volver', administracion_path, class: 'small button' %>
+</div>
 </div>
