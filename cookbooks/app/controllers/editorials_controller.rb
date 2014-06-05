@@ -31,7 +31,7 @@ class EditorialsController < ApplicationController
 
     respond_to do |format|
       if @editorial.save
-        format.html { redirect_to @editorial, notice: 'Editorial was successfully created.' }
+        format.html { redirect_to @editorial, notice: 'La editorial se creó exitosamente.' }
         format.json { render action: 'show', status: :created, location: @editorial }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class EditorialsController < ApplicationController
   def update
     respond_to do |format|
       if @editorial.update(editorial_params)
-        format.html { redirect_to @editorial, notice: 'Editorial was successfully updated.' }
+        format.html { redirect_to @editorial, notice: 'La editorial se actualizó exitosamente.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
