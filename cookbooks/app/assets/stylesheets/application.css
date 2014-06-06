@@ -13,3 +13,12 @@
 
  *= require_tree .
  */
+
+#imagen_logo {
+	float: left;
+}
+
+#principales {
+	float: right;
+	width: auto;
+}
