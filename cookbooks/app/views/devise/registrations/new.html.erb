@@ -27,8 +27,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :fecha_nac %><br>
-      <%= f.date_select :fecha_nac %>
+      <%= f.label "Fecha de nacimiento" %><br>
+      <%= f.date_select :fecha_nac, start_year: 1900, end_year: 2014 %>
     </div>
 
     <div class="field">
