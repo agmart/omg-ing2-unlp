@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
@@ -30,7 +32,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'El autor se creó exitosamente.' }
+        format.html { redirect_to @author, notice: 'El autor se creó exitosamente. '}
         format.json { render action: 'show', status: :created, location: @author }
       else
         format.html { render action: 'new' }
@@ -71,7 +73,7 @@ class AuthorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def author_params
-      params.require(:author).permit(:nombre)
+      params.require(:author).permit(:nombre, :dni)
     end
 
     def check_is_admin

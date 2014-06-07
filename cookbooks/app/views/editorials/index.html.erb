@@ -2,13 +2,13 @@
   <div class="small-6 small-centered columns">
     <h1>Listado de editoriales</h1>
 
-    <table>
+    <table style="width: 400px;">
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Detalles</th>
-          <th>Editar</th>
           <th>Mostrar</th>
+          <th>Editar</th>
+          <th>Borrar</th>
         </tr>
       </thead>
 
@@ -18,7 +18,7 @@
         <td><%= editorial.nombre %></td>
         <td><%= link_to 'Mostrar', editorial %></td>
         <td><%= link_to 'Editar', edit_editorial_path(editorial) %></td>
-        <td><%= link_to 'Borrar', editorial, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        <td><%= link_to 'Borrar', editorial, method: :delete, data: { confirm: '¿Seguro que querés borrarlo?' } %></td>
       </tr>
     <% end %>
       </tbody>

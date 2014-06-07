@@ -6,21 +6,23 @@
 <div class="row">
   <div class="small-6 small-centered columns">
   <%# if @authors.any? %>
-    <table>
+    <table style="width: 500px;">
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Detalles</th>
-        <%# if_admin %>
+        <th>DNI</th>
+        <th>Mostrar</th>
         <th>Editar</th>
         <th>Borrar</th>
+        <%# if_admin %>
       </tr>
     </thead>
 
     <tbody>
       <% @authors.each do |author| %>
-        <tr>
+      <tr>
         <td><%= author.nombre %></td>
+        <td><%= author.dni %></td>
         <td><%= link_to 'Mostrar', author %></td>
         <td><%= link_to 'Editar', edit_author_path(author) %></td>
         <td><%= link_to 'Borrar', author, method: :delete, data: { confirm: '¿Seguro que querés borrarlo?' } %></td>
@@ -29,7 +31,6 @@
     </tbody>
     </table>
   <%# end %>
-  <br>
 
   <%= link_to 'Nuevo autor', new_author_path, class: 'small button' %>
   <%= link_to 'Volver', administracion_path, class: 'small button' %>

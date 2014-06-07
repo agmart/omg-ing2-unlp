@@ -1,3 +1,4 @@
+# encoding: utf-8
 class EditorialsController < ApplicationController
   before_action :set_editorial, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]

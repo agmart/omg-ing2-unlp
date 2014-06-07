@@ -2,13 +2,13 @@
   <div class="small-6 small-centered columns">
     <h1>Listado de categorias</h1>
 
-    <table>
+    <table style="width: 400px;">
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Detalles</th>
-          <th>Editar</th>
           <th>Mostrar</th>
+          <th>Editar</th>
+          <th>Borrar</th>
         </tr>
       </thead>
 
@@ -18,13 +18,11 @@
         <td><%= tag.nombre %></td>
         <td><%= link_to 'Mostrar', tag %></td>
         <td><%= link_to 'Editar', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Borrar', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Borrar', tag, method: :delete, data: { confirm: '¿Seguro que querés borrarlo?' } %></td>
       </tr>
     <% end %>
       </tbody>
     </table>
-
-    <br>
 
     <%= link_to 'Nueva categoría', new_tag_path, class: 'small button' %>
     <%= link_to 'Volver', administracion_path, class: 'small button' %>

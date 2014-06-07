@@ -1,5 +1,6 @@
+# encoding: utf-8
 class PagesController < ApplicationController
-before_action :check_is_admin, only: [:administracion]
+  before_action :check_is_admin, only: [:administracion]
 
   def acerca_de
   end
