@@ -11,6 +11,4 @@ class Author < ActiveRecord::Base
 
   validates :dni, :numericality => { :greater_than => 0, :less_than_or_equal_to => 99999999 }
   validates_uniqueness_of :dni, scope: [:dni, :nombre]
-
-
 end

@@ -7,4 +7,12 @@ class Editorial < ActiveRecord::Base
     allow_blank: false,
     length: { minimum: 2, maximum: 50 },
     format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]+\z/, message: "sólo permite letras y números" }
+
+  validates :direccion,
+    allow_blank: false,
+    length: { minimum: 2, maximum: 50 },
+    format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]+\z/, message: "sólo permite letras y números" }
+
+  validates_uniqueness_of :direccion, scope: [:nombre, :direccion]
+
 end

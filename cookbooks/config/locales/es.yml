@@ -42,6 +42,8 @@ es:
               blank: "no puede estar vacío."
               too_short: es demasiado corto (mínimo 2 caracteres)
               too_long: es demasiado largo (máximo 50 caracteres)
+            direccion:
+              taken: ya existe para esa editorial
         user:
           attributes:
             email:

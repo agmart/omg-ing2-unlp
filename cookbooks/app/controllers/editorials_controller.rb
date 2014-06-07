@@ -73,11 +73,11 @@ class EditorialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def editorial_params
-      params.require(:editorial).permit(:nombre)
+      params.require(:editorial).permit(:nombre, :direccion)
     end
 
     def check_is_admin
-      if !current_user.es_admin
+      if !current_user || !current_user.es_admin
         flash[:error] = 'No tenés permisos'
         redirect_to root_path
       end
