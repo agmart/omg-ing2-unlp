@@ -8,7 +8,7 @@ class EditorialsController < ApplicationController
   # GET /editorials
   # GET /editorials.json
   def index
-    @editorials = Editorial.all
+    @editorials = Editorial.order("nombre ASC")
   end
 
   # GET /editorials/1

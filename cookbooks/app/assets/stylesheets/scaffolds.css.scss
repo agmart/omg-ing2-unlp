@@ -3,11 +3,6 @@ body{
 }
 
 body {
-  background-image: image-url("fondo.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: transparent;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -29,11 +24,11 @@ pre {
 a {
   color: #000;
   &:visited {
-    color: #666;
+    color: #000000;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #000;
+    background-color: transparent;
   }
 }
 a.button {

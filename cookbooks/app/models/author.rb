@@ -15,7 +15,7 @@ class Author < ActiveRecord::Base
   validates_uniqueness_of :dni, scope: [:dni, :nombre]
 
   def strip_nombre
-    self.nombre = self.nombre.squish
+  	self.nombre = self.nombre.squish
     self.dni = self.dni.to_s.squish
   end
 end

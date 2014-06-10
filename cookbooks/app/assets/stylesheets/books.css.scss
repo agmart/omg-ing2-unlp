@@ -1,3 +1,15 @@
 // Place all the styles related to the Books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background-image: image-url("fondo.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+p {
+	font-family: Arial, 'Helvetica';
+	color: #000000;
+}

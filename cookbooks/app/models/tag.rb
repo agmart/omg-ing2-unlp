@@ -4,7 +4,6 @@ class Tag < ActiveRecord::Base
   #has_and_belongs_to_many :books
   before_validation :strip_nombre, :only => [:nombre]
 
-
   validates :nombre,
     presence:true,
     case_sensitive: false,
@@ -14,6 +13,6 @@ class Tag < ActiveRecord::Base
     format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]+\z/, message: "sólo permite letras y números" }
 
   def strip_nombre
-    self.nombre = self.nombre.squish
+	self.nombre = self.nombre.squish
   end
 end
