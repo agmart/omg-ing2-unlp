@@ -23,4 +23,8 @@ class Author < ActiveRecord::Base
     dni = (Author.find id).dni
     "#{nombre}. DNI: #{dni}"
   end
+
+  def to_s
+    nombre
+  end 
 end
