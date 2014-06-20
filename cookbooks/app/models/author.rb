@@ -18,4 +18,9 @@ class Author < ActiveRecord::Base
   	self.nombre = self.nombre.squish
     self.dni = self.dni.to_s.squish
   end
+
+  def nombre_dni
+    dni = (Author.find id).dni
+    "#{nombre}. DNI: #{dni}"
+  end
 end

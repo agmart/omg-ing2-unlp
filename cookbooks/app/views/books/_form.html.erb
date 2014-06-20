@@ -1,13 +1,16 @@
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
-
-      <ul>
-      <% @book.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% if @book.errors.count > 1 %>
+        <h2>Los siguientes errores prohibieron que se guardara este libro:</h2>
+        <ul>
+          <% @book.errors.each do |attr, msg| %>
+            <% if @book.errors[attr].first == msg %>
+              <li><%= "#{attr} #{msg}"%></li>
+            <% end %> 
+          <% end %> 
+        </ul>
       <% end %>
-      </ul>
     </div>
   <% end %>
 
@@ -15,31 +18,45 @@
     <%= f.label :isbn %>
     <%= f.text_field :isbn %>
   </div>
-  <!--<div class="field">
+
+  <div class="row">
     <%= f.label :author %>
-    <%= f.text_field :author %>
-  </div>-->
+    <%= f.hidden_field :author_id, :id => "author_id" %>
+    <%= f.autocomplete_field :author, autocomplete_author_nombre_books_path, :id_element => '#author_id' %> 
+   <div>
+  
+  <div class="row">
+    <%= f.label :editorial %>
+    <%= f.hidden_field :editorial_id, :id => "editorial_id" %>
+    <%= f.autocomplete_field :editorial, autocomplete_editorial_nombre_books_path, :id_element => '#editorial_id' %> 
+  </div>
+  
   <div class="field">
     <%= f.label :titulo %>
     <%= f.text_field :titulo %>
   </div>
+  
   <div class="field">
     <%= f.label :paginas %>
     <%= f.number_field :paginas %>
   </div>
+
   <div class="field">
     <%= f.label :precio %>
     <%= f.text_field :precio %>
   </div>
+
   <div class="field">
     <%= f.label "Año de publicación" %>
     <%= f.number_field :ano_publicacion %>
   </div>
+
   <div class="field">
     <%= f.label "Descripción del libro" %>
     <%= f.text_area :descripcion %>
-  </div>
+  </div> 
+
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit 'Guardar', class: 'button tiny alert' %>
+  
 <% end %>

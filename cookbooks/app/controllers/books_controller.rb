@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
-
+  autocomplete :author, :nombre, display_value: :nombre_dni
+  autocomplete :editorial, :nombre
 
   # GET /books
   # GET /books.json
@@ -26,8 +27,6 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-
-    book_params[:author] = Author.new
     p    book_params[:author]
     @book = Book.new(book_params)
 
@@ -74,6 +73,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:isbn, :titulo, :paginas, :precio, :ano_publicacion, :author)
+      params.require(:book).permit(:isbn, :titulo, :paginas, :precio, :ano_publicacion, :author_id, :editorial_id, :descripcion)
     end
 end
