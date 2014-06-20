@@ -1,6 +1,12 @@
 <div class="row">
-  <div class="small-9 small-centered columns">
+  <div class="small-6 small-centered columns">
+    <h1> Detalles del libro </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 small-centered columns detalles-libro">
     <p id="notice"><%= notice %></p>
+
 
     <p>
     <strong>Isbn:</strong>
@@ -19,15 +25,36 @@
 
     <p>
     <strong>Precio:</strong>
-    <%= @book.precio %>
+    $<%= @book.precio %>
     </p>
 
     <p>
-    <strong>Fecha publicacion:</strong>
+    <strong>Año de publicacion:</strong>
     <%= @book.ano_publicacion %>
     </p>
 
-    <%= link_to 'Edit', edit_book_path(@book) %> |
-    <%= link_to 'Back', books_path %>
+    <p>
+    <strong>Autor:</strong>
+    <%= @book.author.nombre %>
+    </p>
+
+    <p>
+    <strong>Editorial:</strong>
+    <%= @book.editorial.nombre %>
+    </p>
+
+    <p>
+    <strong>Descripción del libro:</strong>
+    <%= @book.descripcion %>
+    </p>
+    <hr>
+    <div class="row">
+      <div class="large-6 column">
+        <%= link_to 'Editar', edit_book_path(@book), class: 'button small' %>
+      </div>
+      <div class="large-6 column">
+        <%= link_to 'Volver al listado', books_path, class: 'button small' %>
+      </div>
+    </div>
   </div>
 </div>
