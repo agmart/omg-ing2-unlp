@@ -39,7 +39,7 @@
               <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
               <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
                 <li><%= link_to 'Ver', book%></li>
-                <% if current_user.es_admin? %> 
+                <% if current_user && current_user.es_admin? %> 
                   <li><%= link_to 'Editar', edit_book_path(book)%></li> 
                   <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
                 <% end %>
