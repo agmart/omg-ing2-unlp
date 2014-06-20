@@ -22,9 +22,7 @@
           <th>Páginas</th>
           <th>Fecha publicación</th>
           <th>Precio</th>
-          <th>Mostrar</th>
-          <th>Editar</th>
-          <th>Borrar</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -37,11 +35,16 @@
             <td><%= book.paginas %></td>
             <td><%= book.ano_publicacion %></td>
             <td>$<%= book.precio %></td>
-            <td><%= link_to 'Ver', book %></td>
-            <% if current_user.es_admin? %>
-              <td><%= link_to 'Editar', edit_book_path(book) %></td>
-              <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-            <% end %>
+            <td>
+              <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
+              <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
+                <li><%= link_to 'Ver', book%></li>
+                <% if current_user.es_admin? %> 
+                  <li><%= link_to 'Editar', edit_book_path(book)%></li> 
+                  <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
+                <% end %>
+              </ul> 
+            </td>
           </tr>
         <% end %>
       </tbody>
