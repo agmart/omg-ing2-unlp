@@ -2,7 +2,10 @@ Cookbooks::Application.routes.draw do
   devise_for :users
   resources :carts
 
-  resources :books
+  resources :books do
+    get :autocomplete_author_nombre, :on => :collection
+    get :autocomplete_editorial_nombre, :on => :collection  
+  end
 
   resources :purchases
 

@@ -21,4 +21,8 @@ class Editorial < ActiveRecord::Base
     self.nombre = self.nombre.squish
     self.direccion = self.direccion.squish
   end
+
+  def to_s
+    nombre
+  end
 end

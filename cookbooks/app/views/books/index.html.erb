@@ -10,62 +10,51 @@
      <a href="#" class="close">&times;</a>
    </div>
   </div>
- <% end %>
- <div class="row">
-   <div class="large-12 columns text-center">
-     <h1>¡Proximamente!</h1>
-     <%= image_tag("book.png", height: 150, width: 150) %>
-     <%= image_tag("chart.png", height: 150, width: 150) %>
-   </div>
- </div>
-<!--<div class="row">
+<% end %>
+<div class="row">
   <div class="small-9 small-centered columns">
-  <table>
-  <thead>
-    <tr>
-      <th>ISBN</th>
-      <th>Autor</th>
-      <th>Título</th>
-      <th>Páginas</th>
-      <th>Fecha publicación</th>
-      <th>Precio</th>
-      <th>Mostrar</th>
-      <th>Editar</th>
-      <th>Borrar</th>
-    </tr>
-  </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>ISBN</th>
+          <th>Autor</th>
+          <th>Título</th>
+          <th>Páginas</th>
+          <th>Fecha publicación</th>
+          <th>Precio</th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @books.each do |book| %>
-      <tr>
-        <td><%= book.isbn %></td>
-        <td><%= book.author.nombre %></td>
-        <td><%= book.titulo %></td>
-        <td><%= book.paginas %></td>
-        <td><%= book.ano_publicacion %></td>
-        <td>$<%= book.precio %></td>
-        <<td><%= link_to 'Ver', book %></td>
-
-          Si hay un admin logueado, puede editar/borrar el libro.
-          Es decir, se muestra el botón. Luego, por las dudas, también se
-          restringe en el controlador.
-        <%#  current_user.es_admin? %>
-        <td><%= link_to 'Editar', edit_book_path(book) %></td>
-        <td><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-        <%# end %>
-          </ul>
-        </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= book.isbn %></td>
+            <td><%= book.author.nombre %></td>
+            <td><%= book.titulo %></td>
+            <td><%= book.paginas %></td>
+            <td><%= book.ano_publicacion %></td>
+            <td>$<%= book.precio %></td>
+            <td>
+              <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
+              <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
+                <li><%= link_to 'Ver', book%></li>
+                <% if current_user && current_user.es_admin? %> 
+                  <li><%= link_to 'Editar', edit_book_path(book)%></li> 
+                  <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
+                <% end %>
+              </ul> 
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="row">
-Si hay un admin logueado, puede agregar un libro
-<%# if current_user %>
-  <%#= link_to 'Nuevo libro', new_book_path, class: "button tiny radius success" %>
-<%# end %>
+  <div class="12-large column text-center">
+    <% if current_user %>
+      <%= link_to 'Nuevo libro', new_book_path, class: "button tiny radius success" %>
+    <% end %>
+  </div>
 </div>
--->
