@@ -1,3 +1,4 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
   # Clase Usuario. Puede ser administrador o usuario normal.
 

@@ -38,7 +38,7 @@ gem 'cancan'
 gem 'devise'
 gem 'foundation-rails'
 gem 'quiet_assets', :group => :development
-gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger', group: 'development'
+# gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger', group: 'development'
 gem 'select2-rails'
 
 # Use ActiveModel has_secure_password
