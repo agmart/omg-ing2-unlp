@@ -24,10 +24,7 @@ class BooksController < ApplicationController
   def edit
   end
 
-  # POST /books
-  # POST /books.json
   def create
-    p    book_params[:author]
     @book = Book.new(book_params)
 
     respond_to do |format|
@@ -41,8 +38,6 @@ class BooksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /books/1
-  # PATCH/PUT /books/1.json
   def update
     respond_to do |format|
       if @book.update(book_params)
@@ -55,10 +50,9 @@ class BooksController < ApplicationController
     end
   end
 
-  # DELETE /books/1
-  # DELETE /books/1.json
   def destroy
-    @book.destroy
+    @book.habilitado = false
+    @book.save!
     respond_to do |format|
       format.html { redirect_to books_url }
       format.json { head :no_content }
