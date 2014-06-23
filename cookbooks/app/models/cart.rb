@@ -1,8 +1,6 @@
 class Cart < ActiveRecord::Base
   #Asociaciones
   belongs_to :user
-  has_and_belongs_to_many :books
+  has_many :cart_book
 
-  #Validaciones
-  validates :user, presence: true
 end

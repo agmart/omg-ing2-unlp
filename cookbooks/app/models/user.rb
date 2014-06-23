@@ -34,11 +34,19 @@ class User < ActiveRecord::Base
     length: { minimum: 2, maximum: 50 },
     format: { with: /\A[\-0-9 ]+\z/, message: "sólo permite números y '-'" }
 
+  before_create :crear_carro
+
+
   def new
   end
 
   def create
-    cart = Cart.new
   end
+
+  private
+    def crear_carro
+      build_cart
+      true
+    end
 
 end

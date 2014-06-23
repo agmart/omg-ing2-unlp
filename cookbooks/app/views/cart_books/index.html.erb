@@ -1,0 +1,29 @@
+<h1>Listing cart_books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Cart</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart_books.each do |cart_book| %>
+      <tr>
+        <td><%= cart_book.book_id %></td>
+        <td><%= cart_book.cart_id %></td>
+        <td><%= link_to 'Show', cart_book %></td>
+        <td><%= link_to 'Edit', edit_cart_book_path(cart_book) %></td>
+        <td><%= link_to 'Destroy', cart_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cart book', new_cart_book_path %>

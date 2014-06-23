@@ -8,9 +8,9 @@ class CartsController < ApplicationController
     @carts = Cart.all
   end
 
-  # GET /carts/1
-  # GET /carts/1.json
   def show
+    throw 10
+    @cart = current_user.cart
   end
 
   # GET /carts/new

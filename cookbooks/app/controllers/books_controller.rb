@@ -1,26 +1,22 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :add_to_cart]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   autocomplete :author, :nombre, display_value: :nombre_dni
   autocomplete :editorial, :nombre
+  
+  has_many :cart_book
 
-  # GET /books
-  # GET /books.json
   def index
     @books = Book.all
   end
 
-  # GET /books/1
-  # GET /books/1.json
   def show
   end
 
-  # GET /books/new
   def new
     @book = Book.new
   end
 
-  # GET /books/1/edit
   def edit
   end
 
@@ -59,13 +55,16 @@ class BooksController < ApplicationController
     end
   end
 
+  def add_to_cart
+    current_user.cart << @book
+    current_user.cart.save!
+    redirect_to @book, notice: 'Libro agregado al carro!'
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:isbn, :titulo, :paginas, :precio, :ano_publicacion, :author_id, :editorial_id, :descripcion)
     end
