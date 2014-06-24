@@ -9,7 +9,6 @@ class CartsController < ApplicationController
   end
 
   def show
-    throw 10
     @cart = current_user.cart
   end
 
@@ -29,7 +28,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html { redirect_to @cart }
         format.json { render action: 'show', status: :created, location: @cart }
       else
         format.html { render action: 'new' }

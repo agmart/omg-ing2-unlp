@@ -48,17 +48,17 @@
     <%= @book.descripcion %>
     </p>
 
-    <%= link_to 'Agregar al carro!', add_to_cart_book_path(@book), method: :post %>
+    <%= button_to 'Agregar al carro!', cart_books_path(book_id: @book), class: 'button tiny alert right' %>
     
     <hr>
     <div class="row">
       <% if current_user && current_user.es_admin? %>
       <div class="large-4 column">
-        <%= link_to 'Editar', edit_book_path(@book), class: 'button small' %>
+        <%= link_to 'Editar', edit_book_path(@book), class: 'button tiny' %>
       </div>
       <% end %>
       <div class="large-4 column">
-        <%= link_to 'Volver al listado', books_path, class: 'button small' %>
+        <%= link_to 'Volver al listado', books_path, class: 'button tiny' %>
       </div>
     </div>
   </div>

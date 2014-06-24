@@ -24,11 +24,13 @@ class CartBooksController < ApplicationController
   # POST /cart_books
   # POST /cart_books.json
   def create
-    @cart_book = CartBook.new(cart_book_params)
+    @cart = current_user.cart
+    book = Book.find(params[:book_id])
+    @cart_book = @cart.add_product(book)
 
     respond_to do |format|
       if @cart_book.save
-        format.html { redirect_to @cart_book, notice: 'Cart book was successfully created.' }
+        format.html { redirect_to @cart_book.cart, notice: 'El libro se agregó correctamente al carro.' }
         format.json { render action: 'show', status: :created, location: @cart_book }
       else
         format.html { render action: 'new' }

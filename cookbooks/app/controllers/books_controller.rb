@@ -1,11 +1,9 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :add_to_cart]
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   autocomplete :author, :nombre, display_value: :nombre_dni
   autocomplete :editorial, :nombre
   
-  has_many :cart_book
-
   def index
     @books = Book.all
   end
@@ -25,7 +23,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to @book, notice: 'El libro se creó correctamente.' }
         format.json { render action: 'show', status: :created, location: @book }
       else
         format.html { render action: 'new' }
@@ -37,7 +35,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to @book, notice: 'Se actualizó el libro correctamente.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -53,12 +51,6 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url }
       format.json { head :no_content }
     end
-  end
-
-  def add_to_cart
-    current_user.cart << @book
-    current_user.cart.save!
-    redirect_to @book, notice: 'Libro agregado al carro!'
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623201333) do
+ActiveRecord::Schema.define(version: 20140623231344) do
 
   create_table "authors", force: true do |t|
     t.string   "nombre"
@@ -40,9 +40,12 @@ ActiveRecord::Schema.define(version: 20140623201333) do
   create_table "cart_books", force: true do |t|
     t.integer  "book_id"
     t.integer  "cart_id"
+    t.integer  "quantity",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cart_books", ["book_id", "cart_id"], name: "index_cart_books_on_book_id_and_cart_id", unique: true, using: :btree
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"

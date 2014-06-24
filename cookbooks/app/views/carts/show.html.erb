@@ -1,4 +1,18 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <p> Contenido de tu carro de compras: </p>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <% @cart.cart_books.each do |cb| %>
+      <%= cb.quantity %> x <%= cb.book.titulo %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <%= link_to 'Volver', books_path %> 
+  </div>
+</div>
