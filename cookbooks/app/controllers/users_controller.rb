@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :cart]
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
 
@@ -9,8 +9,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
+  def cart
+   @cart = @user.cart
+   render 'carts/show' 
+  end
+  
   def show
   end
 

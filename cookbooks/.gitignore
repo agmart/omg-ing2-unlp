@@ -14,3 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+.directory
+.gitignore.swp
+.kateproject
+.kateproject.d/
+Gemfile.lock

@@ -28,6 +28,7 @@
 
       <tbody>
         <% @books.each do |book| %>
+          <% if book.habilitado %>
           <tr>
             <td><%= book.isbn %></td>
             <td><%= book.author.nombre %></td>
@@ -48,6 +49,7 @@
               <% end %>
             </td>
           </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

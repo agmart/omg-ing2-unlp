@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607132900) do
+ActiveRecord::Schema.define(version: 20140623231344) do
 
   create_table "authors", force: true do |t|
     t.string   "nombre"
@@ -31,20 +31,29 @@ ActiveRecord::Schema.define(version: 20140607132900) do
     t.integer  "author_id"
     t.integer  "editorial_id"
     t.string   "descripcion"
+    t.boolean  "habilitado",                               default: true
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
   add_index "books", ["editorial_id"], name: "index_books_on_editorial_id", using: :btree
 
-  create_table "cart_book", id: false, force: true do |t|
-    t.integer "cart_id", null: false
-    t.integer "book_id", null: false
+  create_table "cart_books", force: true do |t|
+    t.integer  "book_id"
+    t.integer  "cart_id"
+    t.integer  "quantity",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "cart_books", ["book_id", "cart_id"], name: "index_cart_books_on_book_id_and_cart_id", unique: true, using: :btree
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "editorials", force: true do |t|
     t.string   "nombre"
