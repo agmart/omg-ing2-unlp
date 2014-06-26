@@ -37,14 +37,16 @@
             <td><%= book.ano_publicacion %></td>
             <td>$<%= book.precio %></td>
             <td>
-              <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
-              <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
-                <li><%= link_to 'Ver', book%></li>
-                <% if current_user && current_user.es_admin? %> 
-                  <li><%= link_to 'Editar', edit_book_path(book)%></li> 
-                  <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
-                <% end %>
-              </ul> 
+              <% if current_user && current_user.es_admin? %>
+                <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
+                <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
+                    <li><%= link_to 'Ver', book%></li>
+                    <li><%= link_to 'Editar', edit_book_path(book)%></li> 
+                    <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
+                </ul>
+              <% else %>
+                 <%= link_to 'Ver', book, class: "button tiny" %>
+              <% end %>
             </td>
           </tr>
           <% end %>
@@ -55,7 +57,7 @@
 </div>
 <div class="row">
   <div class="12-large column text-center">
-    <% if current_user %>
+    <% if current_user && current_user.es_admin? %>
       <%= link_to 'Nuevo libro', new_book_path, class: "button tiny radius success" %>
     <% end %>
   </div>

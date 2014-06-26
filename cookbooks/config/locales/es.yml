@@ -48,6 +48,16 @@ es:
           attributes:
             email:
               invalid: es inválido (ejemplo@host.com).
+            password:
+              too_short: debe tener como mínimo 4 caracteres y máximo 12.
+            nombre:
+              too_short: demasiado corto.
+            direccion:
+              too_short: demasiada corta.
+            tel:
+              too_short: inválido.
+            password_confirmation:
+              confirmation: Las contraseñas no coinciden.
   date:
       abbr_day_names:
       - dom
