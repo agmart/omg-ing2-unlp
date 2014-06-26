@@ -9,7 +9,7 @@ development:
   pool: 5
   timeout: 5000
   username: root
-  password: 545602
+  password:  
   encoding: utf8
   #encoding: UTF-8
 # Warning: The database defined as "test" will be erased and

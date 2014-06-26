@@ -31,6 +31,12 @@
     <%= f.autocomplete_field :editorial, autocomplete_editorial_nombre_books_path, :id_element => '#editorial_id' %> 
   </div>
   
+  <div class="row">
+    <%= f.label "Categorías" %>
+    <%= f.hidden_field :tags, :ids => "tags_ids" %>
+    <%= f.autocomplete_field :tags, autocomplete_tag_nombre_books_path, 'data-delimiter' => ' '%> 
+  </div>
+  
   <div class="field">
     <%= f.label :titulo %>
     <%= f.text_field :titulo %>

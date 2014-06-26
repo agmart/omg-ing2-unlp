@@ -37,7 +37,15 @@
     <strong>Autor:</strong>
     <%= @book.author.nombre %>
     </p>
-
+    
+    <p>
+    <strong>Categorías:</strong>
+    <%= "---" if @book.tags.empty? %>
+    <% @book.tags.each do |t| %>
+      <%= t.nombre %><%= "," unless t.equal? @book.tags.last %>
+    <% end %>
+    </p>
+    
     <p>
     <strong>Editorial:</strong>
     <%= @book.editorial.nombre %>
