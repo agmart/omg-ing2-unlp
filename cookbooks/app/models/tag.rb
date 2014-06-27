@@ -15,4 +15,8 @@ class Tag < ActiveRecord::Base
   def strip_nombre
 	self.nombre = self.nombre.squish
   end
+  
+  def to_s
+    nombre
+  end
 end
