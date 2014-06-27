@@ -2,7 +2,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
-  before_action :set_tags, only: [:create]
+  before_action :set_tags, only: [:create, :update]
   
   autocomplete :author, :nombre, display_value: :nombre_dni
   autocomplete :editorial, :nombre
@@ -23,6 +23,15 @@ class BooksController < ApplicationController
   end
 
   def create
+    # Si el ISBN del libro ya existe en la DB y está deshabilitado, se habilita
+    try_book = Book.find_by_isbn(@bp['isbn'])
+    if try_book && try_book.habilitado == false
+      try_book.habilitado = true
+      try_book.save!
+      redirect_to try_book, notice: 'El libro ya estaba creado y se habilitó correctamente.'
+      return
+    end
+    
     @book = Book.new(@bp)
 
     respond_to do |format|
@@ -55,7 +64,7 @@ class BooksController < ApplicationController
   
   def update
     respond_to do |format|
-      if @book.update(book_params)
+      if @book.update(@bp)
         format.html { redirect_to @book, notice: 'Se actualizó el libro correctamente.' }
         format.json { head :no_content }
       else

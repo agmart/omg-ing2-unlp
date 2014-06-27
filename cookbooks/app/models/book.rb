@@ -10,9 +10,8 @@ class Book < ActiveRecord::Base
   has_many :cart_book
   
   # Validaciones
-  # se va hasta que este hecho el alta de author
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
- 
+  validates :isbn, uniqueness: true
    
   validates :titulo,
     presence:true,
@@ -30,5 +29,17 @@ class Book < ActiveRecord::Base
 
   def strip_titulo
     self.titulo = self.titulo.squish
+  end
+  
+  def try_tags
+    if tags.any?
+      tags2 = []
+      tags.each do |t|
+        tags2 << t.nombre
+      end
+      tags2.join ' '
+    else
+      ""
+    end
   end
 end
