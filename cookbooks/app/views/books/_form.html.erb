@@ -1,7 +1,7 @@
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
-      <% if @book.errors.count > 1 %>
+      <% if @book.errors.count > 0 %>
         <h2>Los siguientes errores prohibieron que se guardara este libro:</h2>
         <ul>
           <% @book.errors.each do |attr, msg| %>

@@ -23,6 +23,15 @@ class BooksController < ApplicationController
   end
 
   def create
+    # Si el ISBN del libro ya existe en la DB y está deshabilitado, se habilita
+    try_book = Book.find_by_isbn(@bp['isbn'])
+    if try_book && try_book.habilitado == false
+      try_book.habilitado = true
+      try_book.save!
+      redirect_to try_book, notice: 'El libro ya estaba creado y se habilitó correctamente.'
+      return
+    end
+    
     @book = Book.new(@bp)
 
     respond_to do |format|

@@ -44,7 +44,7 @@
                     <li><%= link_to 'Editar', edit_book_path(book)%></li> 
                     <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
                 </ul>
-              <% else %>
+              <% elsif current_user %>
                  <%= link_to 'Ver', book, class: "button tiny" %>
               <% end %>
             </td>

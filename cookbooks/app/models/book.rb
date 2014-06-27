@@ -10,9 +10,8 @@ class Book < ActiveRecord::Base
   has_many :cart_book
   
   # Validaciones
-  # se va hasta que este hecho el alta de author
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
- 
+  validates :isbn, uniqueness: true
    
   validates :titulo,
     presence:true,
