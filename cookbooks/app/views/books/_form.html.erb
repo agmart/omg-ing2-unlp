@@ -34,7 +34,8 @@
   <div class="row">
     <%= f.label "Categorías" %>
     <%= f.hidden_field :tags, :ids => "tags_ids" %>
-    <%= f.autocomplete_field :tags, autocomplete_tag_nombre_books_path, 'data-delimiter' => ' '%> 
+    <%= f.autocomplete_field :tags, autocomplete_tag_nombre_books_path, 'data-delimiter' => ' ', 
+         value: @book.try_tags %> 
   </div>
   
   <div class="field">

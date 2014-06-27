@@ -31,4 +31,16 @@ class Book < ActiveRecord::Base
   def strip_titulo
     self.titulo = self.titulo.squish
   end
+  
+  def try_tags
+    if tags.any?
+      tags2 = []
+      tags.each do |t|
+        tags2 << t.nombre
+      end
+      tags2.join ' '
+    else
+      ""
+    end
+  end
 end
