@@ -20,8 +20,8 @@ class Book < ActiveRecord::Base
     length: { minimum: 2, maximum: 50 },
     format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]+\z/, message: "sólo permite letras y números" }
 
-  validates :isbn, :paginas, numericality: { only_integer: true, message: "debe ser un número entero" }
-  validates :precio, numericality: true
+  validates :isbn, :paginas, numericality: { only_integer: true, :greater_than => 0, message: "debe ser un número entero" }
+  validates :precio, numericality: { only_integer: true, :greater_than => 0, message: "debe ser un número entero" }
   validates :ano_publicacion, 
     numericality: { only_integer: true, message: "debe ser un número entero" },
     numericality: { greater_than: 0, message: "debe ser mayor a 0" },

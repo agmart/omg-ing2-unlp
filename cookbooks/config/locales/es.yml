@@ -58,6 +58,10 @@ es:
               too_short: inválido.
             password_confirmation:
               confirmation: Las contraseñas no coinciden.
+        book:
+          attributes:
+            isbn:
+              taken: ya exisistente.
   date:
       abbr_day_names:
       - dom
