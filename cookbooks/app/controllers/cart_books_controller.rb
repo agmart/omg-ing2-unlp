@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CartBooksController < ApplicationController
   before_action :set_cart_book, only: [:show, :edit, :update, :destroy]
 

@@ -16,7 +16,7 @@
 
   <div class="field">
     <%= f.label :isbn %>
-    <%= f.text_field :isbn %>
+    <%= f.text_field :isbn, :readonly => f.object.persisted? %>
   </div>
 
   <div class="row">
