@@ -2,7 +2,11 @@ Cookbooks::Application.routes.draw do
   resources :cart_books  
   devise_for :users
 
-  resources :carts
+  resources :carts do
+    member do
+      get :vaciar
+    end
+  end
   
   resources :books do
     collection do
