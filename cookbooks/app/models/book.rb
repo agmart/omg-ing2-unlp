@@ -22,8 +22,7 @@ class Book < ActiveRecord::Base
 
   validates :isbn, :paginas, numericality: { only_integer: true, :greater_than => 0, message: "debe ser un número entero" }
   validates :paginas, numericality: { :less_than => 10000, message: "debe ser menor que 10.000" }
-  validates :precio, numericality: { only_integer: true, :greater_than => 0, message: "debe ser un número entero mayor a $0" }
-  validates :precio, numericality: { :less_than => 100000, message: "debe ser menor que $100.000" }
+  validates :precio, numericality: { greater_than: 0, less_than: 100000, message: "debe estar entre $0 y $100.000" }
   
   validates :ano_publicacion, 
     numericality: { greater_than: 0, message: "debe ser mayor a 0" }
@@ -31,9 +30,10 @@ class Book < ActiveRecord::Base
     numericality: { only_integer: true, message: "debe ser un número entero" }
   validates :ano_publicacion, 
     numericality: { less_than: 2015, message: "debe ser menor que 2014"}
-  
-  
-  
+ 
+  before_validation :what
+  after_validation :what2
+
   def strip_titulo
     self.titulo = self.titulo.squish
   end

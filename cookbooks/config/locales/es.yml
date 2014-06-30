@@ -66,6 +66,8 @@ es:
           attributes:
             isbn:
               taken: ya existente.
+            precio:
+              not_a_number: debe ser un número
   date:
       abbr_day_names:
       - dom

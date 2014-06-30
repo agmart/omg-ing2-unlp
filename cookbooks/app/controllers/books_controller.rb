@@ -33,7 +33,6 @@ class BooksController < ApplicationController
     end
     
     @book = Book.new(@bp)
-
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'El libro se creó correctamente.' }

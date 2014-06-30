@@ -23,6 +23,11 @@
     <% end %>
   </div>
 
+  <div class="field">
+    <%= f.label :titulo %>
+    <%= f.text_field :titulo %>
+  </div>
+  
   <div class="row">
     <%= f.label "Autor" %><%= link_to "[Agregar]", new_author_path %>
     <%= f.hidden_field :author_id, :id => "author_id" %>
@@ -35,18 +40,6 @@
     <%= f.autocomplete_field :editorial, autocomplete_editorial_nombre_books_path, :id_element => '#editorial_id' %> 
   </div>
   
-  <div class="row">
-    <%= f.label "Categorías" %><%= link_to "[Agregar]", new_tag_path %>
-    <%= f.hidden_field :tags, :ids => "tags_ids" %>
-    <%= f.autocomplete_field :tags, autocomplete_tag_nombre_books_path, 'data-delimiter' => ' ', 
-         value: @book.try_tags %> 
-  </div>
-  
-  <div class="field">
-    <%= f.label :titulo %>
-    <%= f.text_field :titulo %>
-  </div>
-  
   <div class="field">
     <%= f.label :paginas %>
     <%= f.number_field :paginas %>
@@ -57,6 +50,13 @@
     <%= f.text_field :precio %>
   </div>
 
+  <div class="row">
+    <%= f.label "Categorías" %><%= link_to "[Agregar]", new_tag_path %>
+    <%= f.hidden_field :tags, :ids => "tags_ids" %>
+    <%= f.autocomplete_field :tags, autocomplete_tag_nombre_books_path, 'data-delimiter' => ' ', 
+         value: @book.try_tags %> 
+  </div>
+  
   <div class="field">
     <%= f.label "Año de publicación" %>
     <%= f.number_field :ano_publicacion %>
