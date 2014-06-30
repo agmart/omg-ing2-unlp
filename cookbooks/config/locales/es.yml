@@ -4,13 +4,16 @@ es:
       author: "Autor"
       tag: "Tag"
       Editorial: "Editorial"
+      book: "Libro"
     attributes:
       author:
-        nombre: "Nombre"   # <= here
+        nombre: "Nombre"
       tag:
         nombre: "Nombre"
       editorial:
         nombre: "Nombre"
+      book:
+        ano_publicacion: "Año publicación"
     errors:
       messages:
         blank: "no puede estar vacío."
@@ -48,8 +51,9 @@ es:
           attributes:
             email:
               invalid: es inválido (ejemplo@host.com).
+              taken: ya está siendo usado
             password:
-              too_short: debe tener como mínimo 4 caracteres y máximo 12.
+              too_short: debe tener como mínimo 4 caracteres.
             nombre:
               too_short: demasiado corto.
             direccion:
@@ -61,7 +65,7 @@ es:
         book:
           attributes:
             isbn:
-              taken: ya exisistente.
+              taken: ya existente.
   date:
       abbr_day_names:
       - dom

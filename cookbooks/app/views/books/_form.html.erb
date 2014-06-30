@@ -16,23 +16,27 @@
 
   <div class="field">
     <%= f.label :isbn %>
-    <%= f.text_field :isbn, :readonly => f.object.persisted? %>
+    <% if @book.persisted? %>
+      <%= f.label @book.isbn %>
+    <% else %>
+      <%= f.text_field :isbn%>
+    <% end %>
   </div>
 
   <div class="row">
-    <%= f.label "Autor" %>
+    <%= f.label "Autor" %><%= link_to "[Agregar]", new_author_path %>
     <%= f.hidden_field :author_id, :id => "author_id" %>
     <%= f.autocomplete_field :author, autocomplete_author_nombre_books_path, :id_element => '#author_id' %> 
    <div>
   
   <div class="row">
-    <%= f.label :editorial %>
+    <%= f.label :editorial %><%= link_to "[Agregar]", new_editorial_path %>
     <%= f.hidden_field :editorial_id, :id => "editorial_id" %>
     <%= f.autocomplete_field :editorial, autocomplete_editorial_nombre_books_path, :id_element => '#editorial_id' %> 
   </div>
   
   <div class="row">
-    <%= f.label "Categorías" %>
+    <%= f.label "Categorías" %><%= link_to "[Agregar]", new_tag_path %>
     <%= f.hidden_field :tags, :ids => "tags_ids" %>
     <%= f.autocomplete_field :tags, autocomplete_tag_nombre_books_path, 'data-delimiter' => ' ', 
          value: @book.try_tags %> 
