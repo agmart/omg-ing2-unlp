@@ -16,11 +16,7 @@
 
   <div class="field">
     <%= f.label :isbn %>
-    <% if @book.persisted? %>
-      <%= f.label @book.isbn %>
-    <% else %>
-      <%= f.text_field :isbn%>
-    <% end %>
+    <%= f.text_field :isbn%>
   </div>
 
   <div class="field">

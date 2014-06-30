@@ -9,10 +9,11 @@ Cookbooks::Application.routes.draw do
       get :autocomplete_author_nombre
       get :autocomplete_editorial_nombre
       get :autocomplete_tag_nombre
+      get :deshabilitados
     end
     
     member do
-      get :enable
+      get :habilitar
       post :add_to_cart
     end
   end

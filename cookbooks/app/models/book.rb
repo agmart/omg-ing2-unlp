@@ -12,6 +12,7 @@ class Book < ActiveRecord::Base
   # Validaciones
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
   validates :isbn, uniqueness: true
+  validates :isbn, numericality: { less_than: 999999999, message: "el isbn no puede ser superior a 999 999 999" }
    
   validates :titulo,
     presence:true,
@@ -31,9 +32,6 @@ class Book < ActiveRecord::Base
   validates :ano_publicacion, 
     numericality: { less_than: 2015, message: "debe ser menor que 2014"}
  
-  before_validation :what
-  after_validation :what2
-
   def strip_titulo
     self.titulo = self.titulo.squish
   end

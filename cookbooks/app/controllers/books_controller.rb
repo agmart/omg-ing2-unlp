@@ -1,6 +1,6 @@
 # encoding: utf-8
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :habilitar]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_tags, only: [:create, :update]
   
@@ -20,6 +20,16 @@ class BooksController < ApplicationController
   end
 
   def edit
+  end
+
+  def deshabilitados
+    @books = Book.where(habilitado: false)
+  end
+
+  def habilitar
+    @book.habilitado = true
+    @book.save!
+    redirect_to deshabilitados_books_path, notice: 'El libro se habilitó correctamente'
   end
 
   def create
