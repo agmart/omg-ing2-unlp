@@ -64,7 +64,7 @@
             <%= link_to 'Editar', edit_book_path(@book), class: 'button tiny' %>
           </div>
         <% else %>
-            <%= button_to 'Agregar al carro!', cart_books_path(book_id: @book), class: 'button tiny alert right' %>
+            <%= button_to 'Agregar al carro!', cart_books_path(book_id: @book), class: 'small button radius success right' %>
         <% end %>
       <% end %>
       <div class="large-4 column">
