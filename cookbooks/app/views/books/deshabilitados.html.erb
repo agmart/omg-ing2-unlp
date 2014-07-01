@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="small-9 small-centered columns">
+    <table>
+      <thead>
+        <tr>
+          <th>ISBN</th>
+          <th>Autor</th>
+          <th>Título</th>
+          <th>Páginas</th>
+          <th>Fecha publicación</th>
+          <th>Precio</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= book.isbn %></td>
+            <td><%= book.author.nombre %></td>
+            <td><%= book.titulo %></td>
+            <td><%= book.paginas %></td>
+            <td><%= book.ano_publicacion %></td>
+            <td>$<%= book.precio %></td>
+            <td>
+              <% if current_user && current_user.es_admin? %>
+                <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
+                <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
+                    <li><%= link_to 'Habilitar', habilitar_book_path(book) %></li> 
+                </ul>
+              <% else %>
+                 <%= redirect_to root_path %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

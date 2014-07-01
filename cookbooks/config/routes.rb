@@ -2,17 +2,22 @@ Cookbooks::Application.routes.draw do
   resources :cart_books  
   devise_for :users
 
-  resources :carts
+  resources :carts do
+    member do
+      get :vaciar
+    end
+  end
   
   resources :books do
     collection do
       get :autocomplete_author_nombre
       get :autocomplete_editorial_nombre
       get :autocomplete_tag_nombre
+      get :deshabilitados
     end
     
     member do
-      get :enable
+      get :habilitar
       post :add_to_cart
     end
   end

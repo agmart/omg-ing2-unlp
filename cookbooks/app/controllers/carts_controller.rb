@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show, :edit, :vaciar, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /carts
@@ -19,6 +19,12 @@ class CartsController < ApplicationController
 
   # GET /carts/1/edit
   def edit
+  end
+
+
+  def vaciar
+    @cart.cart_books.delete_all
+    redirect_to cart_path(@cart), notice: 'El carro fue vaciado correctamente!'
   end
 
   # POST /carts

@@ -1,6 +1,6 @@
 # encoding: utf-8
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :habilitar]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_tags, only: [:create, :update]
   
@@ -22,6 +22,16 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def deshabilitados
+    @books = Book.where(habilitado: false)
+  end
+
+  def habilitar
+    @book.habilitado = true
+    @book.save!
+    redirect_to deshabilitados_books_path, notice: 'El libro se habilitó correctamente'
+  end
+
   def create
     # Si el ISBN del libro ya existe en la DB y está deshabilitado, se habilita
     try_book = Book.find_by_isbn(@bp['isbn'])
@@ -33,7 +43,6 @@ class BooksController < ApplicationController
     end
     
     @book = Book.new(@bp)
-
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'El libro se creó correctamente.' }

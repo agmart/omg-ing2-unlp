@@ -12,6 +12,7 @@ class Book < ActiveRecord::Base
   # Validaciones
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
   validates :isbn, uniqueness: true
+  validates :isbn, numericality: { less_than: 999999999, message: "el isbn no puede ser superior a 999 999 999" }
    
   validates :titulo,
     presence:true,
@@ -21,12 +22,16 @@ class Book < ActiveRecord::Base
     format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]+\z/, message: "sólo permite letras y números" }
 
   validates :isbn, :paginas, numericality: { only_integer: true, :greater_than => 0, message: "debe ser un número entero" }
-  validates :precio, numericality: { only_integer: true, :greater_than => 0, message: "debe ser un número entero" }
+  validates :paginas, numericality: { :less_than => 10000, message: "debe ser menor que 10.000" }
+  validates :precio, numericality: { greater_than: 0, less_than: 100000, message: "debe estar entre $0 y $100.000" }
+  
   validates :ano_publicacion, 
-    numericality: { only_integer: true, message: "debe ser un número entero" },
-    numericality: { greater_than: 0, message: "debe ser mayor a 0" },
-    numericality: { less_than: 2050, message: "debe ser menor que 2050"}
-
+    numericality: { greater_than: 0, message: "debe ser mayor a 0" }
+  validates :ano_publicacion, 
+    numericality: { only_integer: true, message: "debe ser un número entero" }
+  validates :ano_publicacion, 
+    numericality: { less_than: 2015, message: "debe ser menor que 2014"}
+ 
   def strip_titulo
     self.titulo = self.titulo.squish
   end
