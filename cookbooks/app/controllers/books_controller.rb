@@ -36,6 +36,9 @@ class BooksController < ApplicationController
           @books.sort! {|a,b| b.author.nombre.downcase <=> a.author.nombre.downcase}
         end
       end
+      filtering_params(params).each do |key, value|
+        @books = @books.public_send(key, value) if value.present?
+      end
     end
   end
 
@@ -122,6 +125,10 @@ class BooksController < ApplicationController
   private
     def book_params
       params.require(:book).permit(:isbn, :q, :titulo, :tags, :paginas, :precio, :ano_publicacion, :author_id, :editorial_id, :descripcion)
+    end
+    
+    def filtering_params(params)
+      params.slice(:isbn, :paginas_min, :paginas_max, :precio_min, :precio_max, :autor, :titulo, :ano_pub_min, :ano_pub_max)
     end
     
     def set_book
