@@ -9,7 +9,18 @@ class BooksController < ApplicationController
   autocomplete :tag, :nombre
   
   def index
-    @books = Book.all
+    if params[:q]
+      if request.xhr?
+        # Pedido AJAX, el del ISBN en alta de Libro
+        @books = Book.where("isbn like ?", "%#{params[:q]}%")
+        render :json => @books 
+      else
+        # Pedido normal
+        @books = Book.where("isbn like ?", "%#{params[:q]}%")
+      end
+    else
+      @books = Book.all
+    end
   end
 
   def show
@@ -94,8 +105,9 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:isbn, :titulo, :tags, :paginas, :precio, :ano_publicacion, :author_id, :editorial_id, :descripcion)
+      params.require(:book).permit(:isbn, :q, :titulo, :tags, :paginas, :precio, :ano_publicacion, :author_id, :editorial_id, :descripcion)
     end
+    
     def set_book
       @book = Book.find(params[:id])
     end
