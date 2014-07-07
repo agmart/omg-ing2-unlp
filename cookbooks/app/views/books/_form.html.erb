@@ -1,21 +1,21 @@
 <script type="text/javascript">
- $(document).ready(function() {
-$("#isbn_field").focusout(function() {
+$(document).ready(function() {
+  $("#isbn_field").focusout(function() {
     var query = $(this).val();
-  $.get("/books?q=" + query, function(data) {
-    if(data.length == 0) {
-    // Existe el libro
-      $("#cross").hide();
-      $("#tick").show();
-    }
-    else {
-      $("#cross").show();
-      $("#tick").hide();
-    // No existe el libro
-    }  
+    $.get("/books?q=" + query, function(data) {
+      if(data.length == 0) {
+        // Existe el libro
+        $("#cross").hide();
+        $("#tick").show();
+      }
+      else {
+        $("#cross").show();
+        $("#tick").hide();
+        // No existe el libro
+      }  
+    });
   });
 });
-      });
 
 </script>
 

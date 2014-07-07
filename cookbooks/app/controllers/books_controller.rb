@@ -3,7 +3,9 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :habilitar]
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_tags, only: [:create, :update]
-  
+ 
+  helper_method :sort_column, :sort_direction
+
   autocomplete :author, :nombre, display_value: :nombre_dni
   autocomplete :editorial, :nombre
   autocomplete :tag, :nombre
@@ -11,15 +13,29 @@ class BooksController < ApplicationController
   def index
     if params[:q]
       if request.xhr?
-        # Pedido AJAX, el del ISBN en alta de Libro
+        # Pedido de busqueda AJAX, el del ISBN en alta de Libro
         @books = Book.where("isbn like ?", "%#{params[:q]}%")
         render :json => @books 
       else
-        # Pedido normal
+        # Pedido de busqueda normal
         @books = Book.where("isbn like ?", "%#{params[:q]}%")
       end
     else
-      @books = Book.all
+      # Index sin busqueda particular
+      # el orden por autor hay que hacerlo a mano
+      # porque no tienen el nombre, tienen el id... 
+      if sort_column != "author_id"
+        # Si no se ordena por autor, se puede usar sort_column
+        @books = Book.order(sort_column + " " + sort_direction)
+      else
+        # Se ordena por autor --> a mano
+        @books = Book.all
+        if sort_direction == 'asc'
+          @books.sort! {|a,b| a.author.nombre.downcase <=> b.author.nombre.downcase}
+        else
+          @books.sort! {|a,b| b.author.nombre.downcase <=> a.author.nombre.downcase}
+        end
+      end
     end
   end
 
@@ -110,5 +126,13 @@ class BooksController < ApplicationController
     
     def set_book
       @book = Book.find(params[:id])
+    end
+
+    def sort_column
+      Book.column_names.include?(params[:sort]) ? params[:sort] : "isbn"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

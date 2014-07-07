@@ -16,12 +16,12 @@
     <table>
       <thead>
         <tr>
-          <th>ISBN</th>
-          <th>Autor</th>
-          <th>Título</th>
-          <th>Páginas</th>
-          <th>Fecha publicación</th>
-          <th>Precio</th>
+          <th><%= sortable "isbn", "ISBN" %></th>
+          <th><%= sortable "author_id", "Autor" %></th>
+          <th><%= sortable "titulo", "Título" %></th>
+          <th><%= sortable "paginas", "Páginas" %></th>
+          <th><%= sortable "ano_publicacion", "Fecha publicación" %></th>
+          <th><%= sortable "precio", "Precio" %></th>
           <th></th>
         </tr>
       </thead>
