@@ -128,7 +128,7 @@ class BooksController < ApplicationController
     end
     
     def filtering_params(params)
-      params.slice(:isbn, :paginas_min, :paginas_max, :precio_min, :precio_max, :autor, :titulo, :ano_pub_min, :ano_pub_max)
+      params.slice(:isbn, :paginas_min, :paginas_max, :precio_min, :precio_max, :author_id, :titulo, :ano_pub_min, :ano_pub_max)
     end
     
     def set_book

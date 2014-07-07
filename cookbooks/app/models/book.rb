@@ -37,8 +37,8 @@ class Book < ActiveRecord::Base
   scope :paginas_max, -> (max_pags) { where("paginas <= ?", max_pags) }
   scope :precio_min,  -> (min_precio) { where("precio >= ?", min_precio) }
   scope :precio_max,  -> (max_precio) { where("precio <= ?",  max_precio) }
-  scope :autor,       -> (autor_id) { where author_id: autor_id }
-  scope :titulo,      -> (titulo)   { where("titulo like ?", titulo) }
+  scope :author_id,       -> (autor_id) { where author_id: autor_id }
+  scope :titulo,      -> (titulo)   { where("titulo like ?", "%#{titulo}%") }
   scope :ano_pub_min, -> (min_ano_pub) { where("ano_publicacion >= ?", min_ano_pub) }
   scope :ano_pub_max, -> (max_ano_pub) { where("ano_publicacion <= ?", max_ano_pub) }
   
