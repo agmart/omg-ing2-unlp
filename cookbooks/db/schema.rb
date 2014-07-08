@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630195246) do
+ActiveRecord::Schema.define(version: 20140708202337) do
 
   create_table "authors", force: true do |t|
     t.string   "nombre"
@@ -67,12 +67,21 @@ ActiveRecord::Schema.define(version: 20140630195246) do
     t.integer "book_id",     null: false
   end
 
+  create_table "purchase_books", force: true do |t|
+    t.integer  "book_id"
+    t.integer  "purchase_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "purchases", force: true do |t|
     t.date     "fecha"
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "total",      default: 0
   end
 
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree

@@ -1,10 +1,15 @@
 Cookbooks::Application.routes.draw do
-  resources :cart_books  
+  resources :purchase_books
+
+  resources :cart_books do
+  end 
+  
   devise_for :users
 
   resources :carts do
     member do
       get :vaciar
+      post :confirmar
     end
   end
   
@@ -27,6 +32,7 @@ Cookbooks::Application.routes.draw do
   resources :users do
     member do
       get 'cart'
+      get 'purchases'
     end
   end
 

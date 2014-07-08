@@ -7,36 +7,56 @@
   <div class="small-7 small-centered columns">
     <table>
       <thead>
-      <tr>
-        <th>Cantidad</th>
-        <th>Libro</th>
-        <th>Precio Unitario</th>
-        <th>Precio total</th>      
-      </tr>
+        <tr>
+          <th>Cantidad</th>
+          <th>Libro</th>
+          <th>Precio Unitario</th>
+          <th>Precio total</th>      
+        </tr>
       </thead>
       <tbody>
-        <% total = 0 %>
-        <% @cart.cart_books.each do |cb| %>
-          <tr>
+      <% @total = 0 %>
+      <% @cart.cart_books.each do |cb| %>
+        <tr>
           <td><%= cb.quantity %></td>
           <td><%= "#{cb.book.titulo} (#{cb.book.author})" %></td>
           <td>$<%= cb.book.precio %></td>
           <% total_libro = cb.quantity * cb.book.precio %>
           <td>$<%= total_libro %> <%= link_to '[X]', cb, method: :delete, data: { confirm: '¿Remover libro del carro?' } %></td>
-          </tr>
-          <% total += total_libro %>
-        <% end %>
-        <td></td>
-        <td></td>
-        <td><strong>TOTAL:</strong></td>
-        <td>$<%= total %></td>
+        </tr>
+        <% @total += total_libro %>
+      <% end %>
+      <td></td>
+      <td></td>
+      <td><strong>TOTAL:</strong></td>
+      <td>$<%= @total %></td>
       </tbody>
     </table>
   </div>
 </div>
 <div class="row">
   <div class="small-6 small-centered columns">
-    <%= link_to 'Vaciar carro', vaciar_cart_path(@cart), class: 'button tiny' %>
-    <%= link_to 'Volver', books_path, class: 'button tiny' %> 
+    <div class="row">
+      <div class="small-4 left columns">
+        <%= link_to 'Vaciar carro', vaciar_cart_path(@cart), class: 'button tiny' %>
+      </div>
+      <div class="small-4 left columns">
+        <a href="#" data-reveal-id="myModal" class='button tiny'>Pagar</a> 
+        <div id="myModal" class="reveal-modal" data-reveal> 
+          <%= form_tag confirmar_cart_path(@cart) do %>
+            <%= label_tag "Tarjeta:" %>
+            <%= select_tag :tipo_tarjeta, options_for_select([['Visa', 'visa'],['Mastercard', 'mastercard'],['Naranja', 'naranja']]) %>
+            <%= label_tag "Número de tarjeta:" %>
+            <%= text_field_tag :numero_tarjeta %>
+           <%= hidden_field_tag :total, @total %>
+            <%= submit_tag 'Confirmar pago!' %>
+          <% end %>
+          <a class="close-reveal-modal">&#215;</a> 
+        </div>
+      </div>
+      <div class="small-4 right columns">
+        <%= link_to 'Volver', books_path, class: 'button tiny' %> 
+      </div>
+    </div>
   </div>
 </div>

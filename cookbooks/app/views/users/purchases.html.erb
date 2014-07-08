@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <h1>¡Estas son tus compras!</h1>
+
+    <table style="width: 500px;">
+      <thead>
+        <tr>
+          <th>Identificador</th>
+          <th>Total</th>
+          <th>Detalles</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @purchases.each do |purchase| %>
+        <tr>
+          <td><%= purchase.id %></td>
+          <td><%= purchase.total %></td>
+          <td><%= 'modal co ndetalles' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to 'Volver', root_path, class: 'small button' %>
+  </div>
+</div>
+

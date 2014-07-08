@@ -5,10 +5,10 @@ class Book < ActiveRecord::Base
   # Asociaciones
   belongs_to :author
   belongs_to :editorial
-  has_and_belongs_to_many :purchases, join_table: 'purchase_book'
   has_and_belongs_to_many :tags, join_table: 'tag_book'
   has_many :cart_book
-  
+  has_many :purchase_books
+
   # Validaciones
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
   validates :isbn, uniqueness: true
