@@ -6,6 +6,8 @@
       <thead>
         <tr>
           <th>Identificador</th>
+          <th>Fecha</th>
+          <th>Estado</th>
           <th>Total</th>
           <th>Detalles</th>
         </tr>
@@ -15,8 +17,23 @@
       <% @purchases.each do |purchase| %>
         <tr>
           <td><%= purchase.id %></td>
-          <td><%= purchase.total %></td>
-          <td><%= 'modal co ndetalles' %></td>
+          <td><%= purchase.created_at.strftime("%d/%m/%y") %></td>
+          <td><%= purchase.estado %></td>
+          <td>$<%= purchase.total %></td>
+          <td><a href="#" data-reveal-id="modal-<%= purchase.id %>">Ver</a></td>
+          <div id="modal-<%= purchase.id %>" class="reveal-modal" data-reveal>
+            <% purchase.purchase_books.each do |pb| %>
+              <%= pb.quantity %> x
+              [<%= pb.book.isbn %>] 
+              <%= "#{pb.book.titulo} (#{pb.book.author})" %>
+              ($<%= pb.book.precio %>)
+              <% total_libro = pb.quantity * pb.book.precio %>
+              ---> $<%= total_libro %>
+            <% end %>
+            <br>
+            TOTAL: $<%= purchase.total %>
+            <a class="close-reveal-modal">&#215;</a>
+          </div>
         </tr>
       <% end %>
       </tbody>
