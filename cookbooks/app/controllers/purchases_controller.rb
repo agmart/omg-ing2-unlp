@@ -7,6 +7,9 @@ class PurchasesController < ApplicationController
   # GET /purchases.json
   def index
     @purchases = Purchase.all
+    filtering_params(params).each do |key, value|
+      @purchases = @purchases.public_send(key, value) if value.present?
+    end
   end
 
   # GET /purchases/1
@@ -64,13 +67,17 @@ class PurchasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_purchase
-      @purchase = Purchase.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_purchase
+    @purchase = Purchase.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def purchase_params
-      params.require(:purchase).permit(:fecha, :estado)
-    end
+  def filtering_params(params)
+    params.slice(:fecha_min, :fecha_max)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def purchase_params
+    params.require(:purchase).permit(:fecha, :estado, :fecha_min, :fecha_max)
+  end
 end
