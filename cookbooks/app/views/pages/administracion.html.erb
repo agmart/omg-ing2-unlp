@@ -4,12 +4,17 @@
   </div>
 </div>
 <div class="row">
-  <div class="small-6 small-centered columns">
+  <div class="small-7 small-centered columns">
     <ul class="button-group even-3 radius">
       <%= link_to 'Autores', authors_path, class: "small button" %>
       <%= link_to 'Editoriales', editorials_path, class: "small button" %>
       <%= link_to 'Categorías', tags_path, class: "small button" %>
       <%= link_to 'Libros deshabilitados', deshabilitados_books_path, class: "small button" %> 
     </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <%= link_to 'Pedidos de libros', purchases_path, class: 'small button' %>
   </div>
 </div>

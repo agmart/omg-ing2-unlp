@@ -26,6 +26,7 @@
         <% end %>
         Identificado como: <strong><%= current_user.email %></strong>
         <% if !current_user.es_admin? %>
+          | <%= link_to "Mis compras", purchases_user_path(current_user) %>
           <div id="carro">
             <%= link_to 'Carro de compras', cart_path(current_user)%>
             <%= image_tag "carro_compras.gif" %>

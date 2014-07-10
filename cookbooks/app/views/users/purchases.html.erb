@@ -28,7 +28,7 @@
               <%= "#{pb.book.titulo} (#{pb.book.author})" %>
               ($<%= pb.book.precio %>)
               <% total_libro = pb.quantity * pb.book.precio %>
-              ---> $<%= total_libro %>
+              ---> $<%= total_libro %><br>
             <% end %>
             <br>
             TOTAL: $<%= purchase.total %>

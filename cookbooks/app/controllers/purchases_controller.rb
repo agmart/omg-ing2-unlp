@@ -30,7 +30,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+        format.html { redirect_to @purchase, notice: 'Se creó correctamente la compra.' }
         format.json { render action: 'show', status: :created, location: @purchase }
       else
         format.html { render action: 'new' }
@@ -44,7 +44,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+        format.html { redirect_to purchases_path, notice: 'Se actualizó la compra correctamente.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
