@@ -56,6 +56,9 @@ Cookbooks::Application.routes.draw do
   get 'contacto' => 'pages#contacto'
   get 'administracion' => 'pages#administracion'
   get 'ayuda' => 'pages#ayuda'
+  get 'nuevo_admin' => 'pages#nuevo_admin'
+  post 'nuevo_admin' => 'pages#crear_admin'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
