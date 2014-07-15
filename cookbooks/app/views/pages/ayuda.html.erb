@@ -1,0 +1,32 @@
+<script type="text/javascript">
+$(function(){
+
+  $('#q-and-a li a').each(function(){
+      $(this).click(function(){
+          $(this).siblings('div').slideToggle(300);            
+      });        
+  });                
+
+});
+</script>
+<style media="screen" type="text/css">
+
+ul { margin: 0; padding: 0; }
+ul li { margin: 0; padding: 0; list-style: none; }
+ul li a { color: blue; }
+ul li div { display: none; }
+</style>
+
+<center>
+<h1>Ayuda</h1>
+<h2>Preguntas frecuentes</h2>
+<hr style="width: 600px; color: #000000;">
+<ul id="q-and-a">
+    <li><a>¿Cómo puedo ...</a>
+    <div> Para hacer eso tenés que jajajajajajajajaja</div>
+    </li>
+    <li><a>¿Si quiero ....?</a>
+      <div>Probá con jaaaaaaaaaaaaaaaaajajajajajajajaja</div>
+    </li>
+</ul>
+</center>

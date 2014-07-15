@@ -11,6 +11,8 @@ class PagesController < ApplicationController
   def administracion
   end
 
+  def ayuda
+  end
   private
     def check_is_admin
       if !current_user || !current_user.es_admin
