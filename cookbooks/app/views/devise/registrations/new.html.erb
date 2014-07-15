@@ -44,9 +44,14 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
+<<<<<<< HEAD
     <div><%= f.submit "Registrarse", class: 'small button radius success' %>
     <%= link_to "Cancelar", root_path, class: 'small alert button right' %>
     </div>
+=======
+    <div><%= f.submit "Registrarse", class: 'button tiny float left' %></div>
+    <div><%= link_to 'Cancelar', root_path, class: 'button tiny float right' %></div>
+>>>>>>> origin/entregable
   <% end %>
 
     <%= render "devise/shared/links" %>

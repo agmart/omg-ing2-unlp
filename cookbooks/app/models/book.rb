@@ -5,14 +5,14 @@ class Book < ActiveRecord::Base
   # Asociaciones
   belongs_to :author
   belongs_to :editorial
-  has_and_belongs_to_many :purchases, join_table: 'purchase_book'
   has_and_belongs_to_many :tags, join_table: 'tag_book'
   has_many :cart_book
-  
+  has_many :purchase_books
+
   # Validaciones
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
   validates :isbn, uniqueness: true
-  validates :isbn, numericality: { less_than: 999999999, message: "el isbn no puede ser superior a 999 999 999" }
+  validates :isbn, numericality: { less_than: 9999999999999, message: "no puede tener más de 13 dígitos" }
    
   validates :titulo,
     presence:true,
@@ -26,12 +26,22 @@ class Book < ActiveRecord::Base
   validates :precio, numericality: { greater_than: 0, less_than: 100000, message: "debe estar entre $0 y $100.000" }
   
   validates :ano_publicacion, 
-    numericality: { greater_than: 0, message: "debe ser mayor a 0" }
+    numericality: { greater_than: 1900, message: "debe ser mayor a 1900" }
   validates :ano_publicacion, 
     numericality: { only_integer: true, message: "debe ser un número entero" }
   validates :ano_publicacion, 
     numericality: { less_than: 2015, message: "debe ser menor que 2014"}
  
+  scope :isbn, -> (isbn) { where isbn: isbn }
+  scope :paginas_min, -> (min_pags) { where("paginas >= ?", min_pags) }
+  scope :paginas_max, -> (max_pags) { where("paginas <= ?", max_pags) }
+  scope :precio_min,  -> (min_precio) { where("precio >= ?", min_precio) }
+  scope :precio_max,  -> (max_precio) { where("precio <= ?",  max_precio) }
+  scope :author_id,       -> (autor_id) { where author_id: autor_id }
+  scope :titulo,      -> (titulo)   { where("titulo like ?", "%#{titulo}%") }
+  scope :ano_pub_min, -> (min_ano_pub) { where("ano_publicacion >= ?", min_ano_pub) }
+  scope :ano_pub_max, -> (max_ano_pub) { where("ano_publicacion <= ?", max_ano_pub) }
+  
   def strip_titulo
     self.titulo = self.titulo.squish
   end

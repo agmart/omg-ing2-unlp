@@ -4,9 +4,9 @@
       <h2><%= pluralize(@editorial.errors.count, "error") %> prohibieron que esta editorial se guardara:</h2>
 
       <ul>
-      <% @editorial.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @editorial.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -14,8 +14,8 @@
   <div class="row">
     <div class="large-12 column">
       <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+        <%= f.label :nombre %><br>
+        <%= f.text_field :nombre %>
       </div>
     </div>
   </div>
@@ -23,18 +23,18 @@
   <div class="row">
     <div class="large-12 column">
       <div class="field">
-    <%= f.label :direccion %><br>
-    <%= f.text_field :direccion %>
+        <%= f.label :direccion %><br>
+        <%= f.text_field :direccion %>
       </div>
     </div>
   </div>
- 
- 
-   <div class="row">
+
+
+  <div class="row">
     <div class="large-4 column">
       <div class="actions">
         <%= f.submit 'Guardar', class: 'small button radius success' %>
       </div>
     </div>
-<% end %>
+  <% end %>
 

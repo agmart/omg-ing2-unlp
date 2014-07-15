@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :cart]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :purchases, :cart]
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
 
@@ -24,6 +24,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  def purchases
+    @purchases = @user.purchases
   end
 
   # POST /users

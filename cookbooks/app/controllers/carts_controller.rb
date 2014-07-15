@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :vaciar, :update, :destroy]
+  before_action :set_cart, only: [:show, :confirmar, :edit, :vaciar, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /carts
@@ -27,6 +27,19 @@ class CartsController < ApplicationController
     redirect_to cart_path(@cart), notice: 'El carro fue vaciado correctamente!'
   end
 
+  def confirmar
+    @compra = Purchase.new(estado: "Pendiente", user: current_user)
+    @cart.cart_books.each do |cb|
+      @compra.purchase_books << PurchaseBook.new(purchase: @compra, book: cb.book, quantity: cb.quantity)
+    end
+
+    @compra.total = params[:total]
+    @cart.cart_books.delete_all
+    @cart.save!
+    @compra.save!
+    redirect_to purchases_user_path(current_user)
+  end
+  
   # POST /carts
   # POST /carts.json
   def create
@@ -75,6 +88,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params[:cart]
+      params[:cart, :total]
     end
 end

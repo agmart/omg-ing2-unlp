@@ -1,25 +1,30 @@
 <%= form_for(@purchase) do |f| %>
   <% if @purchase.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibieron que se guardara esta compra:</h2>
 
       <ul>
-      <% @purchase.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @purchase.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :fecha %><br>
-    <%= f.date_select :fecha %>
+  <div class="row">
+    <div class="large-12 column">
+      <div class="field">
+        <%= f.label :estado %><br>
+        <%= f.text_field :estado %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.text_field :estado %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+
+  <div class="row">
+    <div class="large-4 column">
+      <div class="actions">
+        <%= f.submit 'Guardar', class: 'button small alert' %>
+      </div>
+    </div>
+  <% end %>

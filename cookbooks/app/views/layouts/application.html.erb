@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>CookBooks: Venta de libros de Cocina</title>
+<title>CookBooks: Venta de libros de Cocina</title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-  </head>
+<%= stylesheet_link_tag    "application" %>
+<%= javascript_include_tag "vendor/modernizr" %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+</head>
 
-  <body>
-  <div id="navbarapp" class role="navigation">
-    <div>
-      <p class="navbar-text pull-right">
-      <%= link_to "Inicio", root_url, :class => 'navbar-link'  %> |
-      <% if user_signed_in? %>
-        <%#= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> 
-        <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
-        <% if current_user.es_admin? %>
-          <%= link_to "Administracion", administracion_path %> |
-        <% end %>
-        Identificado como: <strong><%= current_user.email %></strong>
-        <% if !current_user.es_admin? %>
-          <div id="carro">
-            <%= link_to 'Carro de compras', cart_path(current_user)%>
-            <%= image_tag "carro_compras.gif" %>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link' %> |
-        <%= link_to "Identificarse", new_user_session_path, :class => 'navbar-link'  %>
+<body>
+<div id="navbarapp" class role="navigation">
+  <div>
+    <%= link_to "Inicio", root_url, :class => 'navbar-link button tiny float left'  %> 
+    <% if user_signed_in? %>
+      <% if current_user.es_admin? %>
+        <%= link_to "Administracion", administracion_path, class: 'navbar-link button tiny float left' %>
       <% end %>
-    </div>
+      <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link button tiny float left' %> 
+      <%= link_to "Identificado como: #{current_user.email}", '#', class: 'navbar-link button tiny float left' %>
+      <% if !current_user.es_admin? %>
+        <%= link_to "Mis compras", purchases_user_path(current_user), class: 'navbar-link button tiny float left' %>
+        <div id="carro">
+          <%= link_to 'Carro de compras', cart_path(current_user)%>
+          <%= image_tag "carro_compras.gif" %>
+        </div>
+      <% end %>
+      <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link button tiny float left'  %>
+    <% else %>
+      <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link button tiny float right' %>
+      <%= link_to "Identificarse", new_user_session_path, :class => 'navbar-link button tiny float right'  %>
+    <% end %>
   </div>
+</div>
 
-  <div class="image">
-    <div class="large-4 large-centered column">
-      <%= link_to (image_tag "logo.png"), root_path %>
-    </div>
-    <br>
+<div class="image">
+  <div class="large-4 large-centered column">
+    <%= link_to (image_tag "logo.png"), root_path %>
   </div>
-    <div class="row">
-      <div class="large-4 large-centered columns">
-          <%#= link_to 'Catálogo de libros', books_path, class: "small button" %>
-          <%#= link_to 'Contacto', contacto_path, class: "small  button" %>
-      </div>
-    </div>
-  <div class="row large-centered">
+  <br>
+</div>
+<div class="row">
+  <div class="large-4 large-centered columns">
+    <%#= link_to 'Catálogo de libros', books_path, class: "small button" %>
+    <%#= link_to 'Contacto', contacto_path, class: "small  button" %>
+  </div>
+</div>
+<div class="row large-centered">
   <div class="row">
     <div class="large-4 large-centered columns">
       <%- flash.each do |name, msg| -%>
         <div class="row">
           <% if msg != 'No tenés permisos' %>
+<<<<<<< HEAD
             <div class="alert-box succes small-8 small-centered columns" data-alert>
+=======
+            <% if name == :notice %>
+              <% @div = 'alert-box success small-8 small-centered columns' %>
+            <% else %>
+              <% @div = 'alert-box alert small-8 small-centered columns' %>
+            <% end %>
+
+            <div class="<%= @div %>" data-alert>
+>>>>>>> origin/entregable
               <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)%>
               <a href="#" class="close">&times;</a>
             </div>
@@ -65,7 +75,7 @@
       <%- end -%>
     </div>
   </div>
-    <%= yield %>
-  </div>
-    </body>
+  <%= yield %>
+</div>
+</body>
 </html>

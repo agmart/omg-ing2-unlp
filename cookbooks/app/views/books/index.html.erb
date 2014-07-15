@@ -1,14 +1,103 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".filter-toggler").click(function() {
+    var filtersShowing = $(".filters").is(":visible");  
+    if(filtersShowing){
+      $(".filters").hide();
+      $("#hide-filters").hide();
+      $("#show-filters").show();
+    }
+    else {
+      $(".filters").show();
+      $("#show-filters").hide();
+      $("#hide-filters").show();
+    }
+  });
+});
+
+</script>
+
 <div class="row">
   <div class="large-12 columns text-center">
-      <h1>Listado de libros</h1>
+    <h1>Listado de libros</h1>
+  </div>
+</div>
+<div class="row filters-toggle">
+  <div class="row">
+    <div class="large-3 small-centered column">
+      <p id="show-filters" class="filter-toggler">Mostrar filtros</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-3 small-centered column">
+      <p id="hide-filters" class="initially-hidden filter-toggler">Ocultar filtros</p>
+    </div>
+  </div>
+</div>
+<div class="row filters initially-hidden">
+  <div class="large-6 small-centered column">
+    <%= form_tag '/books', :method => :get do %>
+      <div class="row">
+        <div class="large-6 column">
+          <%= label_tag "ISBN:" %>
+          <%= text_field_tag :isbn %>
+        </div>
+        <div class="large-6 column">
+          <%= label_tag "Título" %>
+          <%= text_field_tag :titulo %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 column">
+          <%= label_tag "Año de publicación mayor a:" %>
+          <%= text_field_tag :ano_pub_min %>
+        </div>
+        <div class="large-6 column">
+          <%= label_tag "Año de publicación menor a:" %>
+          <%= text_field_tag :ano_pub_max %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 column">
+          <%= label_tag "Mínimo de páginas:" %>
+          <%= text_field_tag :paginas_min %>
+        </div>
+        <div class="large-6 column">
+          <%= label_tag "Máximo de páginas:" %>
+          <%= text_field_tag :paginas_max %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 column">
+          <%= label_tag "Precio mínimo:" %>
+          <%= text_field_tag :precio_min %>
+        </div>
+        <div class="large-6 column">
+          <%= label_tag "Precio máximo:" %>
+          <%= text_field_tag :precio_max %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 small-centered column">
+          <%= label_tag "Autor:" %>
+          <%= hidden_field_tag :author_id_2, :id => "author_id" %>
+          <%= autocomplete_field_tag 'author_id', '', autocomplete_author_nombre_books_path, :id_element => '#author_id' %> 
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 small-centered column">
+          <%= submit_tag 'Filtrar' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 <% if flash[:alert] || flash[:error] %>
   <div class="row">
-   <div class="alert-box alert small-4 small-centered columns" data-alert>
-     <%= flash[:alert] || flash[:error] || @error %>
-     <a href="#" class="close">&times;</a>
-   </div>
+    <div class="alert-box alert small-4 small-centered columns" data-alert>
+      <%= flash[:alert] || flash[:error] || @error %>
+      <a href="#" class="close">&times;</a>
+    </div>
   </div>
 <% end %>
 <div class="row">
@@ -16,19 +105,19 @@
     <table>
       <thead>
         <tr>
-          <th>ISBN</th>
-          <th>Autor</th>
-          <th>Título</th>
-          <th>Páginas</th>
-          <th>Fecha publicación</th>
-          <th>Precio</th>
+          <th><%= sortable "isbn", "ISBN" %></th>
+          <th><%= sortable "author_id", "Autor" %></th>
+          <th><%= sortable "titulo", "Título" %></th>
+          <th><%= sortable "paginas", "Páginas" %></th>
+          <th><%= sortable "ano_publicacion", "Fecha publicación" %></th>
+          <th><%= sortable "precio", "Precio" %></th>
           <th></th>
         </tr>
       </thead>
 
       <tbody>
-        <% @books.each do |book| %>
-          <% if book.habilitado %>
+      <% @books.each do |book| %>
+        <% if book.habilitado %>
           <tr>
             <td><%= book.isbn %></td>
             <td><%= book.author.nombre %></td>
@@ -40,17 +129,17 @@
               <% if current_user && current_user.es_admin? %>
                 <a href="#" data-dropdown="drop1-<%=book.id%>" class="tiny button dropdown secondary">Acciones</a>
                 <ul id="drop1-<%=book.id%>" data-dropdown-content class="f-dropdown"> 
-                    <li><%= link_to 'Ver', book%></li>
-                    <li><%= link_to 'Editar', edit_book_path(book)%></li> 
-                    <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
+                  <li><%= link_to 'Ver', book%></li>
+                  <li><%= link_to 'Editar', edit_book_path(book)%></li> 
+                  <li><%= link_to 'Borrar', book, method: :delete, data: { confirm: '¿Estás seguro?' } %></li> 
                 </ul>
               <% elsif current_user %>
-                 <%= link_to 'Ver', book, class: "button tiny" %>
+                <%= link_to 'Ver', book, class: "button tiny" %>
               <% end %>
             </td>
           </tr>
-          <% end %>
         <% end %>
+      <% end %>
       </tbody>
     </table>
   </div>

@@ -1,0 +1,29 @@
+<h1>Listing purchase_books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Purchase</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchase_books.each do |purchase_book| %>
+      <tr>
+        <td><%= purchase_book.book_id %></td>
+        <td><%= purchase_book.purchase_id %></td>
+        <td><%= link_to 'Show', purchase_book %></td>
+        <td><%= link_to 'Edit', edit_purchase_book_path(purchase_book) %></td>
+        <td><%= link_to 'Destroy', purchase_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Purchase book', new_purchase_book_path %>

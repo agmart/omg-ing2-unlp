@@ -1,39 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <h1> Detalles del usuario </h1>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @user.nombre %>
-</p>
+    <div class="row">
+      <p>
+      <strong>Nombre:</strong>
+      <%= @user.nombre %>
+      </p>
+    </div>
 
-<p>
-  <strong>Dni:</strong>
-  <%= @user.dni %>
-</p>
+    <div class="row">
+      <p>
+      <strong>Dni:</strong>
+      <%= @user.dni %>
+      </p>
+    </div>
 
-<p>
-  <strong>Fecha alta:</strong>
-  <%= @user.fecha_alta %>
-</p>
+    <div class="row">
+      <p>
+      <strong>Direccion:</strong>
+      <%= @user.direccion %>
+      </p>
+    </div>
 
-<p>
-  <strong>Direccion:</strong>
-  <%= @user.direccion %>
-</p>
+    <div class="row">
+      <p>
+      <strong>Teléfono:</strong>
+      <%= @user.tel %>
+      </p>
+    </div>
 
-<p>
-  <strong>Teléfono:</strong>
-  <%= @user.tel %>
-</p>
+    <div class="row">
+      <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+      </p>
+    </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Fecha de nacimiento:</strong>
-  <%= @user.fecha_nac %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <div class="row">
+      <div class="large-6 column">
+        <%= link_to 'Volver al listado', purchases_path, class: 'button small' %>
+      </div>
+    </div>
+  </div>
+</div>

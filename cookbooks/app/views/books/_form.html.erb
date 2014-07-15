@@ -1,3 +1,24 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#isbn_field").focusout(function() {
+    var query = $(this).val();
+    $.get("/books?q=" + query, function(data) {
+      if(data.length == 0) {
+        // Existe el libro
+        $("#cross").hide();
+        $("#tick").show();
+      }
+      else {
+        $("#cross").show();
+        $("#tick").hide();
+        // No existe el libro
+      }  
+    });
+  });
+});
+
+</script>
+
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +37,9 @@
 
   <div class="field">
     <%= f.label :isbn %>
-    <%= f.text_field :isbn%>
+    <%= f.text_field :isbn, id: "isbn_field" %>
+    <%= image_tag "tick.png", id: 'tick', class: "initially-hidden" %>
+    <%= image_tag "cross.png", id: 'cross', class: "initially-hidden" %> 
   </div>
 
   <div class="field">
