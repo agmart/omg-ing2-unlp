@@ -1,0 +1,72 @@
+<center>
+  <h1>
+    Libros más comprados
+  </h1>
+</center>
+<div class="row">
+  <div class="small-8 small-centered columns">
+
+    <div class="row filters">
+      <div class="large-6 small-centered column">
+        <%= form_tag '/purchases/mas_comprados', :method => :get do %>
+
+          <script> 
+$(document).ready(function() {
+    $('#fecha_min').fdatepicker({
+format: 'yyyy/mm/dd'
+});
+    $('#fecha_max').fdatepicker({
+format: 'yyyy/mm/dd'
+});
+
+    });
+          </script>
+          <div class="row">
+            <div class="large-6 column">
+              <%= label_tag "Fecha base:" %>
+              <div>
+                <input type="text" class="span2" value="2014/07/15" id="fecha_min" name="fecha_min">
+              </div>
+            </div>
+            <div class="large-6 column">
+              <%= label_tag "Fecha tope" %>
+              <div>
+                <input type="text" class="span2" value="2014/07/15" id="fecha_max" name="fecha_max">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 small-centered column">
+              <%= submit_tag 'Filtrar' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<center>
+  <div class="row">
+    <%#= throw @mas_comprados.any? %>
+    <% if @mas_comprados.any? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Libro</th>
+            <th>Cantidad comprados</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @mas_comprados.each do |id, cantidad| %>
+          <tr>
+            <% @book = Book.find id  %>
+            <td><%= @book.titulo %></td>
+            <td><center><%= cantidad %></center></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</center>

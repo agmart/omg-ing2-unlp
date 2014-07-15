@@ -26,6 +26,25 @@ class PurchasesController < ApplicationController
   def edit
   end
 
+  def mas_comprados
+    @purchases = Purchase.all
+    @mas_comprados = {}
+    if filtering_params(params).empty?
+      return
+    end
+    filtering_params(params).each do |key, value|
+      @purchases = @purchases.public_send(key, value) if value.present?
+    end
+    # @purchases = compras del filtro de fechas
+    @purchases.each do |compra|
+      compra.purchase_books.each do |pb|
+        @mas_comprados[pb.book_id] = @mas_comprados[pb.book_id] == nil ? pb.quantity : @mas_comprados[pb.book_id] + pb.quantity
+      end
+    end
+    @mas_comprados.values.sort!
+    @mas_comprados.first(5)
+  end
+
   # POST /purchases
   # POST /purchases.json
   def create

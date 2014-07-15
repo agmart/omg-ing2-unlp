@@ -27,7 +27,11 @@ Cookbooks::Application.routes.draw do
     end
   end
 
-  resources :purchases
+  resources :purchases do
+    collection do
+      get :mas_comprados
+    end
+  end
 
   resources :users do
     member do
