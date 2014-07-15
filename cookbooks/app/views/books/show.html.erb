@@ -26,50 +26,58 @@
     <p>
     <strong>Precio:</strong>
     $<%= @book.precio %>
-    </p>
+  </p>
 
-    <p>
-    <strong>Año de publicacion:</strong>
-    <%= @book.ano_publicacion %>
-    </p>
+  <p>
+  <strong>Año de publicacion:</strong>
+  <%= @book.ano_publicacion %>
+  </p>
 
-    <p>
-    <strong>Autor:</strong>
-    <%= @book.author.nombre %>
-    </p>
-    
-    <p>
-    <strong>Categorías:</strong>
-    <%= "---" if @book.tags.empty? %>
-    <% @book.tags.each do |t| %>
-      <%= t.nombre %><%= "," unless t.equal? @book.tags.last %>
-    <% end %>
-    </p>
-    
-    <p>
-    <strong>Editorial:</strong>
-    <%= @book.editorial.nombre %>
-    </p>
+  <p>
+  <strong>Autor:</strong>
+  <%= @book.author.nombre %>
+  </p>
 
-    <p>
-    <strong>Descripción del libro:</strong>
-    <%= @book.descripcion %>
-    </p>
+  <p>
+  <strong>Categorías:</strong>
+  <%= "---" if @book.tags.empty? %>
+  <% @book.tags.each do |t| %>
+    <%= t.nombre %><%= "," unless t.equal? @book.tags.last %>
+  <% end %>
+  </p>
 
-    <hr>
-    <div class="row">
-      <% if current_user %>
-        <% if current_user.es_admin? %>
-          <div class="large-4 column">
-            <%= link_to 'Editar', edit_book_path(@book), class: 'button tiny' %>
-          </div>
-        <% else %>
-            <%= button_to 'Agregar al carro!', cart_books_path(book_id: @book), class: 'button tiny alert right' %>
-        <% end %>
+  <p>
+  <strong>Editorial:</strong>
+  <%= @book.editorial.nombre %>
+  </p>
+
+  <p>
+  <strong>Descripción del libro:</strong>
+  <%= @book.descripcion %>
+  </p>
+
+  <hr>
+  <div class="row">
+    <% if current_user %>
+      <% if current_user.es_admin? %>
+        <div class="large-4 column">
+          <%= link_to 'Editar', edit_book_path(@book), class: 'button tiny' %>
+        </div>
+      <% else %>
+        <div class="large-2 column">
+          <%= form_tag '/cart_books', :method => :post do %>
+            <%= hidden_field_tag 'book_id', @book.id %>
+            <%= text_field_tag :cantidad, nil, placeholder: 'cant' %>
+        </div>
+            <div class="large-2 column">
+              <%= submit_tag 'Agregar al carro', class: 'button tiny' %>
+            </div>
+          <% end %>
       <% end %>
-      <div class="large-4 column">
-        <%= link_to 'Volver al listado', books_path, class: 'button tiny' %>
-      </div>
+    <% end %>
+    <div class="large-4 column">
+      <%= link_to 'Volver al listado', books_path, class: 'button tiny' %>
     </div>
   </div>
+</div>
 </div>
