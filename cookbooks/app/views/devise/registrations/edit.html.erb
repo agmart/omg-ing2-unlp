@@ -8,29 +8,51 @@
       <div><%= f.label :email %>
       <%= f.email_field :email, autofocus: true %></div>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
+    <div class="field">
+      <%= f.label :nombre %><br>
+      <%= f.text_field :nombre %>
+    </div>
+    <div class="field">
+      <%= f.label :dni %><br>
+      <%= f.number_field :dni %>
+    </div>
 
-      <div><%= f.label :password %> <i>(dejalo en blanco si no querés cambiarlo)</i>
-        <%= f.password_field :password, autocomplete: "off" %></div>
 
-      <div><%= f.label "Confirmar password" %>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <div class="field">
+      <%= f.label :dirección %><br>
+      <%= f.text_field :direccion %>
+    </div>
 
-      <div><%= f.label "Password actual" %> <i>(Necesitamos tu password actual para confirmar los cambios)</i>
-        <%= f.password_field :current_password, autocomplete: "off" %></div>
+    <div class="field">
+      <%= f.label :teléfono %><br>
+      <%= f.text_field :tel %>
 
-      <div><%= f.submit "Actualizar" %></div>
+      <sup><i>(Código de área + N° Ej: 01142122345)</i></sup>
+    </div>
+
+    <div class="field">
+      <%= f.label "Fecha de nacimiento" %><br>
+      <%= f.date_select :fecha_nac, start_year: 1900, end_year: 1996 %>
+    </div>
+
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <br>
+    <div><%= f.label :password %> <i>(dejalo en blanco si no querés cambiarlo)</i>
+      <%= f.password_field :password, autocomplete: "off" %></div>
 
-    <h3>Borrar mi cuenta</h3>
+    <div><%= f.label "Confirmar password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-    <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro?" }, method: :delete %>
+  <div><%= f.label "Password actual" %> <i>(Necesitamos tu password actual para confirmar los cambios)</i>
+    <%= f.password_field :current_password, autocomplete: "off" %></div>
 
-    <%= link_to "Volver", :back %>
-    <br><br>
+  <div><%= f.submit "Actualizar", class: 'button tiny float left' %></div>
+<% end %>
+
+<%= link_to "Volver", :back, class: 'button tiny float right' %>
+<br><br>
   </div>
 </div>

@@ -6,5 +6,7 @@ class ApplicationController < ActionController::Base
 
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email, :password, :password_confirmation, :nombre, :dni, :direccion, :tel, :fecha_nac, :es_admin)}
+
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :nombre, :dni, :direccion, :tel, :fecha_nac) }
   end
 end

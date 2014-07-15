@@ -12,7 +12,7 @@ class Book < ActiveRecord::Base
   # Validaciones
   validates :author, :isbn, :editorial, :titulo, :paginas, :precio, :ano_publicacion, presence: true
   validates :isbn, uniqueness: true
-  validates :isbn, numericality: { less_than: 999999999, message: "el isbn no puede ser superior a 999 999 999" }
+  validates :isbn, numericality: { less_than: 9999999999999, message: "no puede tener más de 13 dígitos" }
    
   validates :titulo,
     presence:true,
@@ -26,7 +26,7 @@ class Book < ActiveRecord::Base
   validates :precio, numericality: { greater_than: 0, less_than: 100000, message: "debe estar entre $0 y $100.000" }
   
   validates :ano_publicacion, 
-    numericality: { greater_than: 0, message: "debe ser mayor a 0" }
+    numericality: { greater_than: 1900, message: "debe ser mayor a 1900" }
   validates :ano_publicacion, 
     numericality: { only_integer: true, message: "debe ser un número entero" }
   validates :ano_publicacion, 

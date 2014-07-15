@@ -44,7 +44,8 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
-    <div><%= f.submit "Registrarse" %></div>
+    <div><%= f.submit "Registrarse", class: 'button tiny float left' %></div>
+    <div><%= link_to 'Cancelar', root_path, class: 'button tiny float right' %></div>
   <% end %>
 
     <%= render "devise/shared/links" %>
