@@ -7,13 +7,16 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    filtering_params(params).each do |key, value|
+      @users = @users.public_send(key, value) if value.present?
+    end
   end
 
   def cart
-   @cart = @user.cart
-   render 'carts/show' 
+    @cart = @user.cart
+    render 'carts/show' 
   end
-  
+
   def show
   end
 
@@ -71,13 +74,17 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:nombre, :dni, :fecha_alta, :direccion, :tel, :email, :fecha_nac)
-    end
+  def filtering_params(params)
+    params.slice(:fecha_min, :fecha_max)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:nombre, :dni, :fecha_alta, :direccion, :tel, :email, :fecha_nac)
+  end
 end

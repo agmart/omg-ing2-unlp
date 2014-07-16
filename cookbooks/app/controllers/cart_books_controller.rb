@@ -27,7 +27,12 @@ class CartBooksController < ApplicationController
   def create
     @cart = current_user.cart
     book = Book.find(params[:book_id])
-    @cart_book = @cart.add_product(book)
+    cant = params[:cantidad]
+    cant = cant.to_i
+    if !(cant > 0) || cant > 5000
+      cant = 1
+    end
+    @cart_book = @cart.add_product(book, cant )
 
     respond_to do |format|
       if @cart_book.save

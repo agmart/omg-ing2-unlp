@@ -1,39 +1,75 @@
-<h1>Listing users</h1>
+<center>
+  <h1>Listado de usuarios</h1>
+<div class="row">
+  <div class="small-8 small-centered columns">
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Dni</th>
-      <th>Fecha alta</th>
-      <th>Dirección</th>
-      <th>Teléfono</th>
-      <th>Email</th>
-      <th>Fecha de nacimiento</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <div class="row filters">
+      <div class="large-6 small-centered column">
+        <%= form_tag '/users', :method => :get do %>
 
-  <tbody>
+          <script> 
+            $(document).ready(function() {
+              $('#fecha_min').fdatepicker({
+                format: 'yyyy/mm/dd'
+              });
+              $('#fecha_max').fdatepicker({
+                format: 'yyyy/mm/dd'
+              });
+   
+          });
+          </script>
+          <div class="row">
+            <div class="large-6 column">
+              <%= label_tag "Fecha base:" %>
+              <div>
+                <input type="text" class="span2" value="2014/07/15" id="fecha_min" name="fecha_min">
+              </div>
+            </div>
+            <div class="large-6 column">
+              <%= label_tag "Fecha tope" %>
+              <div>
+                <input type="text" class="span2" value="2014/07/15" id="fecha_max" name="fecha_max">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-6 small-centered column">
+              <%= submit_tag 'Filtrar' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Dni</th>
+        <th>Fecha alta</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Fecha de nacimiento</th>
+      </tr>
+    </thead>
+
+    <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.nombre %></td>
         <td><%= user.dni %></td>
-        <td><%= user.fecha_alta %></td>
+        <td><%= user.created_at.strftime("%d/%m/%y") %></td>
         <td><%= user.direccion %></td>
         <td><%= user.tel %></td>
         <td><%= user.email %></td>
-        <td><%= user.fecha_nac %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><center><%= user.fecha_nac %></center></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>
+  <br>
+</center>

@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
     format: { with: /\A[\-0-9 ]+\z/, message: "sólo permite números y '-'" }
 
   before_create :crear_carro
+  scope :fecha_min,  -> (min_fecha) { where("created_at >= ?", min_fecha) }
+  scope :fecha_max,  -> (max_fecha) { where("created_at <= ?", "#{max_fecha} 23:59") }
 
 
   def new
