@@ -41,7 +41,8 @@ class PurchasesController < ApplicationController
         @mas_comprados[pb.book_id] = @mas_comprados[pb.book_id] == nil ? pb.quantity : @mas_comprados[pb.book_id] + pb.quantity
       end
     end
-    @mas_comprados.values.sort!
+    @mas_comprados = @mas_comprados.sort_by {|k,v|v}
+    @mas_comprados = @mas_comprados.reverse
     @mas_comprados.first(5)
   end
 

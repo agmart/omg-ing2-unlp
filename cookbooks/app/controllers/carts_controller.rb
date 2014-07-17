@@ -37,7 +37,7 @@ class CartsController < ApplicationController
     @cart.cart_books.delete_all
     @cart.save!
     @compra.save!
-    redirect_to purchases_user_path(current_user)
+    redirect_to purchases_user_path(current_user), notice: 'Compra realizada!'
   end
   
   # POST /carts

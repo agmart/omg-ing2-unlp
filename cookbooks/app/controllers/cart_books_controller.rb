@@ -64,7 +64,7 @@ class CartBooksController < ApplicationController
   def destroy
     @cart_book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url }
+      format.html { redirect_to current_user.cart }
       format.json { head :no_content }
     end
   end
