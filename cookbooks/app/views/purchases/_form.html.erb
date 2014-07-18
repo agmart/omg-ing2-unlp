@@ -15,7 +15,7 @@
     <div class="large-12 column">
       <div class="field">
         <%= f.label :estado %><br>
-        <%= f.text_field :estado %>
+        <%= f.select :estado, options_for_select([["Pendiente", "Pendiente"], ["Entregado", "Entregado"], ["Cancelado", "Cancelado"]]) %>
       </div>
     </div>
   </div>

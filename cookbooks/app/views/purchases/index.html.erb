@@ -4,30 +4,31 @@ $(document).ready(function() {
       var filtersShowing = $(".filters").is(":visible");  
       if(filtersShowing){
       $(".filters").hide();
-      $("#hide-filters").hide();
+      $("#hide-filters").hide().removeClass("button tiny");
       $("#show-filters").show();
       }
       else {
       $(".filters").show();
       $("#show-filters").hide();
-      $("#hide-filters").show();
+      $("#hide-filters").show().addClass("button tiny");
       }
       });
     });
 
 </script>
-<div class="row filters-toggle">
-  <div class="row">
-    <div class="large-3 small-centered column">
-      <p id="show-filters" class="filter-toggler">Mostrar filtros</p>
+<center>
+  <div class="row filters-toggle">
+    <div class="row">
+      <div class="large-3 small-centered column">
+        <p id="show-filters" class="filter-toggler button tiny">Mostrar filtros</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-3 small-centered column">
+        <p id="hide-filters" class="initially-hidden filter-toggler">Ocultar filtros</p>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="large-3 small-centered column">
-      <p id="hide-filters" class="initially-hidden filter-toggler">Ocultar filtros</p>
-    </div>
-  </div>
-</div>
 <div class="row">
   <div class="small-8 small-centered columns">
 
@@ -36,69 +37,70 @@ $(document).ready(function() {
         <%= form_tag '/purchases', :method => :get do %>
 
           <script> 
-            $(document).ready(function() {
-              $('#fecha_min').fdatepicker({
-                format: 'yyyy/mm/dd'
-              });
-              $('#fecha_max').fdatepicker({
-                format: 'yyyy/mm/dd'
-              });
-   
-          });
+$(document).ready(function() {
+    $('#fecha_min').fdatepicker({
+format: 'yyyy/mm/dd'
+});
+    $('#fecha_max').fdatepicker({
+format: 'yyyy/mm/dd'
+});
+
+    });
           </script>
           <div class="row">
             <div class="large-6 column">
               <%= label_tag "Fecha base:" %>
               <div>
-                <input type="text" class="span2" value="2014/07/15" id="fecha_min" name="fecha_min">
+                <input type="text" class="span2" value="<%= Date.today.strftime("%Y/%m/%d") %>" id="fecha_min" name="fecha_min">
               </div>
             </div>
             <div class="large-6 column">
               <%= label_tag "Fecha tope" %>
               <div>
-                <input type="text" class="span2" value="2014/07/15" id="fecha_max" name="fecha_max">
+                <input type="text" class="span2" value="<%= Date.today.strftime("%Y/%m/%d") %>" id="fecha_max" name="fecha_max">
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="large-6 small-centered column">
-              <%= submit_tag 'Filtrar' %>
+          <center>
+            <div class="row">
+              <div class="large-6 small-centered column">
+                <%= submit_tag 'Filtrar' %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <center><h1>Listado de pedidos</h1></center>
-    <table>
-      <thead>
-        <tr>
-          <th>Usuario:</th>
-          <th>Identificador</th>
-          <th>Fecha</th>
-          <th>Estado</th>
-          <th>Total</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
+      <center><h1>Listado de pedidos</h1></center>
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario:</th>
+            <th>Identificador</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Total</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
 
-      <tbody>
-      <% @purchases.each do |purchase| %>
-        <td><%= link_to purchase.user.email, user_path(purchase.user) %></td>
-        <td><%= purchase.id %></td>
-        <td><%= purchase.created_at.strftime("%d/%m/%y") %></td>
-        <td><%= purchase.estado %></td>
-        <td>$<%= purchase.total %></td>
-        <td><a href="#" data-reveal-id="modal-<%= purchase.id %>">Ver</a></td>
-        <div id="modal-<%= purchase.id %>" class="reveal-modal" data-reveal>
-          <% purchase.purchase_books.each do |pb| %>
-            <%= pb.quantity %> x
-            [<%= pb.book.isbn %>] 
-            <%= "#{pb.book.titulo} (#{pb.book.author})" %>
-            ($<%= pb.book.precio %>)
-            <% total_libro = pb.quantity * pb.book.precio %>
-            ---> $<%= total_libro %><br>
+        <tbody>
+        <% @purchases.each do |purchase| %>
+          <td><%= link_to purchase.user.email, user_path(purchase.user) %></td>
+          <td><%= purchase.id %></td>
+          <td><%= purchase.created_at.strftime("%d/%m/%y") %></td>
+          <td><%= purchase.estado %></td>
+          <td>$<%= purchase.total %></td>
+          <td><a href="#" data-reveal-id="modal-<%= purchase.id %>">Ver</a></td>
+          <div id="modal-<%= purchase.id %>" class="reveal-modal" data-reveal>
+            <% purchase.purchase_books.each do |pb| %>
+              <%= pb.quantity %> x
+              [<%= pb.book.isbn %>] 
+              <%= "#{pb.book.titulo} (#{pb.book.author})" %>
+              ($<%= pb.book.precio %>)
+              <% total_libro = pb.quantity * pb.book.precio %>
+              ---> $<%= total_libro %><br>
             <% end %>
             <br>
             TOTAL: $<%= purchase.total %>
@@ -112,3 +114,6 @@ $(document).ready(function() {
   <br>
 </div>
 </div>
+
+
+          </center>

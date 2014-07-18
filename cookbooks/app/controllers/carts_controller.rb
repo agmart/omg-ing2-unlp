@@ -28,6 +28,16 @@ class CartsController < ApplicationController
   end
 
   def confirmar
+    if params[:numero_tarjeta].length != 10
+      flash[:error] = "El número de tarjeta debe tener 10 dígitos"
+      redirect_to cart_path(@cart)
+      return
+    end
+    if !@cart.cart_books.any?
+      flash[:error] = "El carro no tiene ningún libro!"
+      redirect_to cart_path(@cart)
+      return
+    end
     @compra = Purchase.new(estado: "Pendiente", user: current_user)
     @cart.cart_books.each do |cb|
       @compra.purchase_books << PurchaseBook.new(purchase: @compra, book: cb.book, quantity: cb.quantity)

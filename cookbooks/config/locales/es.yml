@@ -5,6 +5,7 @@ es:
       tag: "Tag"
       Editorial: "Editorial"
       book: "Libro"
+      user: "Usuario"
     attributes:
       author:
         nombre: "Nombre"
@@ -15,7 +16,10 @@ es:
       book:
         ano_publicacion: "Año publicación"
       user:
+        tel: "Teléfono"
         password_confirmation: "Confirmación de contraseña"
+        current_password: "Contraseña actual"
+        password: "Contraseña"
     errors:
       messages:
         blank: "no puede estar vacío."
@@ -54,6 +58,7 @@ es:
             direccion:
         user:
           attributes:
+            tel: "Telefono"
             email:
               invalid: es inválido (ejemplo@host.com).
               taken: ya está siendo usado

@@ -22,13 +22,13 @@
             <div class="large-6 column">
               <%= label_tag "Fecha base:" %>
               <div>
-                <input type="text" class="span2" value="2014/07/15" id="fecha_min" name="fecha_min">
+                <input type="text" class="span2" value="<%= Date.today.strftime("%Y/%m/%d") %>" id="fecha_min" name="fecha_min">
               </div>
             </div>
             <div class="large-6 column">
               <%= label_tag "Fecha tope" %>
               <div>
-                <input type="text" class="span2" value="2014/07/15" id="fecha_max" name="fecha_max">
+                <input type="text" class="span2" value="<%= Date.today.strftime("%Y/%m/%d") %>" id="fecha_max" name="fecha_max">
               </div>
             </div>
           </div>
